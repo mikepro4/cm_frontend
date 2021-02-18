@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import { authUser, getUser } from "../client/redux/actions/auth_actions"
 

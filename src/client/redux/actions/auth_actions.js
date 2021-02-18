@@ -126,6 +126,7 @@ export const getUser = () => async (
     api
         .get("/user_details")
 		.then(response => {
+			console.log(response.data)
 		})
 		.catch(() => {
             console.log("gail")

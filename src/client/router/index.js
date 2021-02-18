@@ -5,14 +5,14 @@ import About from "../react/pages/about";
 
 import RequireAuth from "../react/pages/auth/require_auth"
 import Signin from "../react/pages/auth/signin"
-const HomeAuth = RequireAuth(Home)
+import Signout from "../react/pages/auth/signout"
 
 export default [
 	{
 		...App,
 		routes: [
 			{	
-				component: HomeAuth,
+				component: RequireAuth(Home),
 				path: "/",
 				exact: true,
 				params: {
@@ -26,6 +26,15 @@ export default [
 				exact: true,
 				params: {
 					name: "signin"
+				},
+
+			},
+			{
+				...Signout,
+				path: "/auth/signout",
+				exact: true,
+				params: {
+					name: "signout"
 				},
 
 			},
