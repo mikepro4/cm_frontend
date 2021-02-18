@@ -5,16 +5,26 @@ import { connect } from 'react-redux';
 export default function(ComposedComponent) {
   class Authentication extends Component {
 
+    navigatetoSignIn() {
+      console.log("navigate to sign in")
+      this.props.history.push("/auth/signin")
+    }
+
     componentDidMount() {
-      if (!this.props.authenticated) {
-        console.log("navigate to sign in")
-        this.props.history.push("/auth/signin")
+      const token = localStorage.getItem('token');
+
+      if (!this.props.authenticated && !token) {
+        this.navigatetoSignIn()
       }
+
     }
 
     componentDidUpdate(nextProps) {
-      if (!nextProps.authenticated) {
-      }
+      console.log(nextProps)
+      const token = localStorage.getItem('token')
+      if (!nextProps.authenticated && !token) {
+        this.navigatetoSignIn()
+      } 
     }
 
     render() {
@@ -26,8 +36,10 @@ export default function(ComposedComponent) {
     }
   }
 
-  function mapStateToProps(state) {
-    return {};
+  function mapStateToProps(app) {
+    return {
+      authenticated: app.auth.authenticated
+    };
   }
   return connect(mapStateToProps)(Authentication);
 

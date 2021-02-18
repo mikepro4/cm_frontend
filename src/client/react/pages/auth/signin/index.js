@@ -4,12 +4,16 @@ import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 import Logo from "../../../components/logo"
 import SignInForm from "./signin_form"
+import { signinUser } from '../../../../redux/actions/auth_actions'
 
 class Singin extends Component {
 
     handleFormSubmit({ email, password }) {
-        console.log(email, password)
-        // this.props.dispatch(signinUser({ email, password }))
+        this.props.signinUser({ 
+            email, 
+            password,
+            history: this.props.history
+        })
     }
 
 	render() {
@@ -45,5 +49,7 @@ function mapStateToProps({ app }) {
 }
 
 export default {
-	component: connect(mapStateToProps, {})(Singin)
+	component: connect(mapStateToProps, {
+        signinUser
+    })(Singin)
 }
