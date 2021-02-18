@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { renderRoutes } from "react-router-config";
-import { authUser } from "../client/redux/actions/auth_actions"
+import { authUser, getUser } from "../client/redux/actions/auth_actions"
 
 class App extends Component {
 	componentDidMount() {
@@ -9,6 +9,7 @@ class App extends Component {
 		if (token) {
 			console.log("auth")
 			this.props.authUser()
+			this.props.getUser()
 		}
 	}
 	render() {
@@ -27,6 +28,7 @@ function mapStateToProps(state) {
 
 export default {
 	component: connect(mapStateToProps, {
-		authUser
+		authUser,
+		getUser
 	})(App)
 };

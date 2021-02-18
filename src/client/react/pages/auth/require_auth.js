@@ -20,7 +20,6 @@ export default function(ComposedComponent) {
     }
 
     componentDidUpdate(nextProps) {
-      console.log(nextProps)
       const token = localStorage.getItem('token')
       if (!nextProps.authenticated && !token) {
         this.navigatetoSignIn()

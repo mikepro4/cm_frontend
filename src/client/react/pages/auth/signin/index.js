@@ -15,7 +15,7 @@ class Singin extends Component {
             history: this.props.history
         })
     }
-
+ 
 	render() {
 
 		return (

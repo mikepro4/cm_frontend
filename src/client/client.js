@@ -16,7 +16,7 @@ const PROXY_ROUTE = "/api";
 const token = localStorage.getItem('token');
 const axiosInstance = axios.create({
 	baseURL: PROXY_ROUTE,
-	headers: {"Authorization" : `Bearer ${token}`} 
+	headers: {"authorization" : `${token}`} 
 });
 
 const { history, store } = configureStore(

@@ -15,7 +15,7 @@ export const authError = (error, success) => async (
 	api
 ) => {
     dispatch({
-        type: AUTH_USER,
+        type: AUTH_ERROR,
         payload: error,
     });
 
@@ -114,3 +114,20 @@ export const signoutUser = (success) => async (
 		success(error);
 	}
 };
+
+/////////////////////////////////////////////////
+
+export const getUser = () => async (
+    dispatch,
+	getState,
+	api
+) => {
+
+    api
+        .get("/user_details")
+		.then(response => {
+		})
+		.catch(() => {
+            console.log("gail")
+        });
+}
