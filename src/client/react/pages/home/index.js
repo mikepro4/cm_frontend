@@ -23,6 +23,4 @@ function mapStateToProps({ app }) {
 	};
 }
 
-export default {
-	component: connect(mapStateToProps, {})(HomePage)
-}
+export default connect(mapStateToProps, {})(HomePage)
