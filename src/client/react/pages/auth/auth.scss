@@ -1,0 +1,85 @@
+.page-auth {
+    background: $light-gray3;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+
+
+    .form-container {
+        width: 350px;
+        position: relative;
+        top: 35%;
+        align-items: stretch;
+        justify-content: center;
+        flex-direction: column;
+        display: flex;
+
+        @media only screen and (max-width: $mobile) {
+            top: 50px;
+        }
+    }
+
+    .form-header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin:0 0 30px 0;
+    }
+
+    .form-navigation {
+        display: flex;
+        width: 100%;
+        height: 35px;
+        position: relative;
+        justify-content: stretch;
+        margin: 5px 0 20px 0;
+        
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            height: 1px;
+            z-index: 1;
+            left: 0;
+            right: 0;
+            background: $gray5;
+            display: block;
+        }
+
+        .form-nav-item {
+            display: flex;
+            flex: 1 1;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: $gray1;
+            position: relative;
+
+            &.active {
+                color: $blue4;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    height: 3px;
+                    z-index: 1;
+                    left: 0;
+                    right: 0;
+                    background: $blue4;
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .bp3-button {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .footer-link {
+        text-align: center;
+    }
+}

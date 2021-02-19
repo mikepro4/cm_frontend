@@ -55,6 +55,7 @@
 	},
 	"dependencies": {
 		"@blueprintjs/core": "^3.38.2",
+		"@blueprintjs/datetime": "^3.20.5",
 		"autoprefixer": "^7.2.3",
 		"axios": "^0.21.1",
 		"babel-runtime": "^6.26.0",

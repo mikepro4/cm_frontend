@@ -14,6 +14,11 @@
 @import "./imports/animations";
 
 //components
+@import "../react/components/form/InputGroup";
+
+
+//Pages
+@import "../react/pages/auth/auth";
 
 html {
 	// overflow: hidden;
@@ -61,16 +66,16 @@ body {
 // -------------------------
 
 a {
-	color: blue;
+	color: $blue4;
 	text-decoration: none;
 
 	&:hover {
-		color: blue;
+		color: $blue2;
 		text-decoration: none;
 	}
 
 	&:active {
-		color: blue;
+		color: $blue3;
 	}
 }
 
@@ -82,3 +87,92 @@ a {
   min-height: 970px;
   // border-bottom: 1px solid rgba($white, 0.3);
 }
+
+.app {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	overflow: hidden;
+}
+
+.route-content  {
+	display: flex;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.bp3-button {
+	font-family: "A", sans-serif;
+	font-weight: 400;
+
+	.bp3-button-text {
+		position: relative;
+		top: -2px;
+	}
+
+	&.bp3-large {
+		.bp3-button-text {
+			top: -3px;
+		}
+	}
+
+	&.bp3-small {
+		.bp3-button-text {
+			top: -1.5px;
+		}
+	}
+}
+
+// .bp3-button:not([class*="bp3-intent-"]) {
+// 	border: none;
+// 	box-shadow: none;
+// 	background: $light-gray1;
+// 	background-image: none;
+// 	&:before {
+// 		color: $black;
+// 	}
+
+// 	&:hover,
+// 	&:active {
+// 		background: $light-gray1;
+// 		border: none;
+// 		box-shadow: none;
+// 		background-image: none;
+// 	}
+// }
+
+// .bp3-button.bp3-intent-success,
+// .bp3-button.bp3-intent-success:hover,
+// .bp3-button.bp3-intent-success:active {
+// 	background: #43bf4d;
+// 	border: none;
+// 	box-shadow: none;
+// 	background-image: none;
+// }
+
+// .bp3-button.bp3-intent-primary,
+// .bp3-button.bp3-intent-primary:hover,
+// .bp3-button.bp3-intent-primary:active {
+// 	background: $cobalt4;
+// 	border: none;
+// 	box-shadow: none;
+// 	background-image: none;
+// }
+
+// .bp3-button:not([class*="bp3-intent-"]):active,
+// .bp3-button:not([class*="bp3-intent-"]).bp3-active {
+// 	background: $cobalt4;
+// 	color: $white;
+// 	box-shadow: none;
+
+// 	&:before {
+// 		color: $white;
+// 	}
+// }

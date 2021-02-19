@@ -11,9 +11,8 @@ class HomePage extends Component {
 		return (
      		<div>
 					<Link to="/auth/signout">Signout</Link>
-
 					This is home. Updated
-					<Link to="/about"> Go to about > </Link>
+					<Link to="/about"> Go to about </Link>
 					React version: {REACT_VERSION}
 				</div>
 		);

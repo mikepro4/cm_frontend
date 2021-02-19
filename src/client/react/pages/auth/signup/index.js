@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 import Logo from "../../../components/logo"
-import SignInForm from "./signin_form"
-import { signinUser } from '../../../../redux/actions/auth_actions'
+import SignUpForm from "./signup_form"
+import { signupUser } from '../../../../redux/actions/auth_actions'
 
-class Singin extends Component {
+class Signup extends Component {
 
     handleFormSubmit({ email, password }) {
-        this.props.signinUser({ 
+        this.props.signupUser({ 
             email, 
             password,
             history: this.props.history
@@ -20,18 +20,18 @@ class Singin extends Component {
 
 		return (
             <div className="route-content page-auth page-signin">
-                <Helmet title="Cash Machine – Sign In" />
+                <Helmet title="Cash Machine – Sign Up" />
                 <div className="form-container">
                     <div className="form-header">
                         <Logo {...this.props} />
                     </div>
             
                     <div className="form-navigation">
-                        <Link to="/auth/signin" className="form-nav-item active">Sign in</Link>
-                        <Link to="/auth/signup" className="form-nav-item">Sign up</Link>
+                        <Link to="/auth/signin" className="form-nav-item">Sign in</Link>
+                        <Link to="/auth/signup" className="form-nav-item active">Sign up</Link>
                     </div>
             
-                    <SignInForm 
+                    <SignUpForm 
                         onSubmit={this.handleFormSubmit.bind(this)} 
                     />
                 </div>
@@ -47,6 +47,6 @@ function mapStateToProps({ app }) {
 
 export default {
 	component: connect(mapStateToProps, {
-        signinUser
-    })(Singin)
+        signupUser
+    })(Signup)
 }
