@@ -2,6 +2,7 @@ import {
     AUTH_USER_SUCCESS,
     SIGNUP_USER_SUCCESS,
     UNAUTH_USER,
+    AUTH_USER,
     AUTH_ERROR,
     FETCH_MESSAGE
   } from '../actions/types';
@@ -14,6 +15,10 @@ export const initialState = {
   
 export const authReducer = function(state = initialState, action) {
     switch(action.type) {
+        case AUTH_USER:
+            return { ...state,
+                error: null
+            };
         case AUTH_USER_SUCCESS:
             return { ...state,
                 error: null,
