@@ -23,6 +23,7 @@
 html {
 	// overflow: hidden;
 	// overflow-y: scroll;
+	touch-action: manipulation;
 }
 
 body {
@@ -112,6 +113,10 @@ a {
 	font-family: "A", sans-serif;
 	font-weight: 400;
 
+	@media only screen and (max-width: $mobile) {
+		font-weight: 500;
+	}
+
 	.bp3-button-text {
 		position: relative;
 		top: -2px;
@@ -119,14 +124,27 @@ a {
 
 	&.bp3-large {
 		.bp3-button-text {
-			top: -3px;
+			
+
+			@media only screen and (max-width: $mobile) {
+				top: -2px;
+			}
 		}
+
+		
 	}
 
 	&.bp3-small {
 		.bp3-button-text {
 			top: -1.5px;
 		}
+	}
+}
+
+.bp3-input {
+	&::placeholder {
+		position: relative;
+		top: -2px;
 	}
 }
 
