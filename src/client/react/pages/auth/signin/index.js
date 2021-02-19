@@ -5,9 +5,13 @@ import Helmet from "react-helmet";
 import { Position, Toaster, Intent } from "@blueprintjs/core";
 import Logo from "../../../components/logo"
 import SignInForm from "./signin_form"
-import { signinUser } from '../../../../redux/actions/auth_actions'
+import { signinUser, authError } from '../../../../redux/actions/auth_actions'
 
 class Singin extends Component {
+
+    componentDidMount() {
+        this.props.authError(null)
+    }
 
     handleFormSubmit({ email, password }) {
         this.props.signinUser({ 
@@ -17,9 +21,9 @@ class Singin extends Component {
         })
     }
 
-    componentDidUpdate(props, prevprops, nextprops) {
+    componentDidUpdate() {
         if(this.props.error) {
-            this.showFailToast("Credentials incorrect")
+            this.showFailToast(this.props.error)
         }
     }
 
@@ -61,6 +65,7 @@ const mapStateToProps = state => ({
 
 export default {
 	component: connect(mapStateToProps, {
-        signinUser
+        signinUser,
+        authError
     })(Singin)
 }

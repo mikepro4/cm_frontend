@@ -63,7 +63,7 @@ export const signinUser = ({ email, password, history, success }) => async (
             history.push("/")
 		})
 		.catch(() => {
-            dispatch(authError('Bad Login Info'));
+            dispatch(authError('Incorrect credentials'));
         });
 }
 
@@ -92,7 +92,7 @@ export const signupUser = ({  email, password, history, success }) => async (
             history.push("/")
         })
         .catch(() => {
-            dispatch(authError('Bad Login Info'));
+            dispatch(authError('Account with this email already exists'));
         });
 }
 

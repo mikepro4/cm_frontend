@@ -3,6 +3,7 @@ import {
     SIGNUP_USER_SUCCESS,
     UNAUTH_USER,
     AUTH_USER,
+    SIGNUP_USER,
     AUTH_ERROR,
     FETCH_MESSAGE
   } from '../actions/types';
@@ -23,6 +24,10 @@ export const authReducer = function(state = initialState, action) {
             return { ...state,
                 error: null,
                 authenticated: true
+            };
+        case SIGNUP_USER:
+            return { ...state,
+                error: null
             };
         case SIGNUP_USER_SUCCESS:
             return { ...state,
