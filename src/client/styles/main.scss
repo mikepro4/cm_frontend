@@ -15,6 +15,7 @@
 
 //components
 @import "../react/components/form/InputGroup";
+@import "../react/components/nav/index";
 
 
 //Pages
@@ -98,6 +99,31 @@ a {
 	bottom: 0;
 	z-index: 1;
 	overflow: hidden;
+	display: flex;
+
+	.app-sidebar {
+		flex-grow: 0;
+        flex-shrink: 0;
+        background: $white;
+        width: 244px;
+        padding-bottom: 50px;
+		overflow-y: auto;
+		border-right: 1px solid $light-gray2;
+	}
+
+	.app-route-container {
+		flex: 1 1;
+		position: relative;
+		background: $light-gray5;
+	}
+
+	.app-logo {
+		margin: 30px 20px;
+	}
+	
+	.signout {
+		margin: 20px;
+	}
 }
 
 .route-content  {
@@ -147,50 +173,3 @@ a {
 		top: -2px;
 	}
 }
-
-// .bp3-button:not([class*="bp3-intent-"]) {
-// 	border: none;
-// 	box-shadow: none;
-// 	background: $light-gray1;
-// 	background-image: none;
-// 	&:before {
-// 		color: $black;
-// 	}
-
-// 	&:hover,
-// 	&:active {
-// 		background: $light-gray1;
-// 		border: none;
-// 		box-shadow: none;
-// 		background-image: none;
-// 	}
-// }
-
-// .bp3-button.bp3-intent-success,
-// .bp3-button.bp3-intent-success:hover,
-// .bp3-button.bp3-intent-success:active {
-// 	background: #43bf4d;
-// 	border: none;
-// 	box-shadow: none;
-// 	background-image: none;
-// }
-
-// .bp3-button.bp3-intent-primary,
-// .bp3-button.bp3-intent-primary:hover,
-// .bp3-button.bp3-intent-primary:active {
-// 	background: $cobalt4;
-// 	border: none;
-// 	box-shadow: none;
-// 	background-image: none;
-// }
-
-// .bp3-button:not([class*="bp3-intent-"]):active,
-// .bp3-button:not([class*="bp3-intent-"]).bp3-active {
-// 	background: $cobalt4;
-// 	color: $white;
-// 	box-shadow: none;
-
-// 	&:before {
-// 		color: $white;
-// 	}
-// }

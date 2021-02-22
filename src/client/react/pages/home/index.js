@@ -6,21 +6,25 @@ const REACT_VERSION = React.version;
 
 class HomePage extends Component {
 
+	componentDidMount() {
+		if(this.props.authenticated) {
+			this.props.history.push("/trending")
+		}
+	}
+
 	render() {
 
 		return (
      		<div>
-					<Link to="/auth/signout">Signout</Link>
-					This is home. Updated
-					<Link to="/about"> Go to about </Link>
-					React version: {REACT_VERSION}
-				</div>
+				
+			</div>
 		);
 	}
 }
 
-function mapStateToProps({ app }) {
+function mapStateToProps(state) {
 	return {
+		authenticated: state.auth.authenticated
 	};
 }
 
