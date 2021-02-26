@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 
 import ListHeader from '../../../components/list/list_header'
-import ListResults from '../../../components/list/List_results'
+import ListResults from '../../../components/list/list_results'
 
 import {
 	searchTickers,
