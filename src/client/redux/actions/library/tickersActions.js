@@ -1,4 +1,5 @@
 import * as _ from "lodash";
+import axios from "axios";
 
 import {
   	SEARCH_TICKERS,
@@ -229,17 +230,9 @@ export const updateTickerCollectionSettings = (item, prop) => async (
 
 // =============================================================================
 
-
-
-
-export const validateSymbol = (values, success) => async (
-	dispatch,
-	getState,
-	api
-) => {
-
-	return api
-		.post("/validate_symbol", {
+export const validateSymbol = values => {
+	return axios
+		.post("/api//tickers/validate_symbol", {
 			symbol: values.symbol
 		})
 		.then(response => {
@@ -247,8 +240,8 @@ export const validateSymbol = (values, success) => async (
 			}
 		})
 		.catch(error => {
-			throw { entityUrlName: "Already Exists" };
+			throw { symbol: "Already Exists" };
 		});
-		
 };
+
 // =============================================================================

@@ -67,4 +67,6 @@ const validate = values => {
 export default reduxForm({
     form: 'tickerNew',
     validate,
+    asyncValidate: validateSymbol,
+	  asyncBlurFields: ["symbol"]
 })(TickerForm);
