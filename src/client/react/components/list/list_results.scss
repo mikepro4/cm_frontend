@@ -1,0 +1,91 @@
+.list-results {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow-x: hidden;
+    overflow-y: scroll;    
+    background: $light-gray5;
+    padding: 15px;
+
+    .list-result-item {
+        margin-bottom: 15px;
+        border: $lightBorder;
+        background: $white;
+        border-radius: 3px;
+        
+        a {
+            color: $black;
+
+            &:hover {
+                color: $blue4;
+            }
+        }
+
+        .list-result-item-top {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba($light-gray3, 0.4);
+
+            .list-result-item-top-left, .list-result-item-top-right {
+                display: flex;
+                align-items: center
+            }
+
+            .item-avatar {
+                margin: 0 10px 0 0;
+                width: 70px;
+                height: 70px;
+                background: $light-gray3;
+
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            }
+
+            .item-main-details {
+                .item-main-details-small {
+                    font-size: 11px;
+                    margin: 0 0 5px 0;
+                    letter-spacing: 0.7px;
+                    color: $gray3;
+                }
+                .item-main-details-big {
+                    font-size: 32px;
+                    font-weight: bold;
+                    margin: 0 0 5px 0;
+                    line-height: 30px;
+                    letter-spacing: 0.7px;
+                }
+            }
+
+            .created-date {
+                font-size: 14px;
+                color: $gray3;
+                margin: 0 20px 0 0;
+            }
+        }
+
+        .list-result-item-bottom {
+            padding: 10px;
+            .item-secondary-details {
+                display: flex;
+
+                .item-secondary-detail {
+                    width: 200px;
+                    margin: 0 10px 0 0;
+
+                    .detail-label {
+                        font-size: 10px;
+                        color: $gray3;
+                    }
+
+                    .detail-value {
+                        font-size: 14px;
+                        color: $black;
+                    }
+                }
+            }
+        }
+    }
+}

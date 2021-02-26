@@ -45,6 +45,11 @@ class Nav extends Component {
 				count: 20435
 			},
 			{
+				url: "/library/proxies",
+				name: "Proxies",
+				count: 1342
+			},
+			{
 				url: "/library/channels",
 				name: "Channels",
 				count: 562
@@ -68,11 +73,6 @@ class Nav extends Component {
 		]
 
 		let systemLinks = [
-			{
-				url: "/system/proxies",
-				name: "Proxies",
-				count: 1342
-			},
 			{
 				url: "/system/scraping",
 				name: "Scraping",

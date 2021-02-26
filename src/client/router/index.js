@@ -8,6 +8,9 @@ import Signin from "../react/pages/auth/signin"
 import Signup from "../react/pages/auth/signup"
 import Signout from "../react/pages/auth/signout"
 
+import TickersLibrary from "../react/pages/library/tickers"
+import ProxiesLibrary from "../react/pages/library/proxies"
+
 export default [
 	{
 		...App,
@@ -56,7 +59,25 @@ export default [
 					name: "about"
 				},
 
-			}
+			},
+			{
+				...TickersLibrary,
+				path: "/library/tickers",
+				exact: true,
+				params: {
+					name: "tickers_library"
+				},
+
+			},
+			{
+				...ProxiesLibrary,
+				path: "/library/proxies",
+				exact: true,
+				params: {
+					name: "proxies_library"
+				},
+
+			},
 		]
 	}
 ];

@@ -10,7 +10,7 @@ class HomePage extends Component {
 	componentDidMount() {
 		
 		if(this.props.authenticated) {
-			this.props.history.push("/trending")
+			this.props.history.push("/library/tickers")
 		}
 	}
 
@@ -19,7 +19,7 @@ class HomePage extends Component {
 			location.reload();
 
 			if(this.props.authenticated) {
-				this.props.history.push("/trending")
+				this.props.history.push("/library/tickers")
 			}
 		}
 	}

@@ -1,0 +1,41 @@
+.list-header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: $lightBorder;
+    background: $white;;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 0 15px;
+    align-items: center;
+
+    .list-header-count {
+        position: relative;
+        top: -2px;
+        letter-spacing: 0.7px;
+    }
+
+    .list-header-right {
+        display: flex;
+
+        .sort-control {
+            margin: 0 0 0 20px;
+            position: relative;
+            top: -3px;
+            cursor: pointer;
+
+            .sort-label {
+                margin: 0 5px 0 0;
+                color: $gray3;
+            }
+
+            .bp3-icon {
+                margin: 0 0 0 3px;
+            }
+
+            &:hover {
+                color: $blue4;
+            }
+        }
+    }
+}
