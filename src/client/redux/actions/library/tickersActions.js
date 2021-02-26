@@ -230,8 +230,11 @@ export const updateTickerCollectionSettings = (item, prop) => async (
 
 // =============================================================================
 
-export const validateSymbol = values => {
-	return axios
+export const validateSymbol = (values, dispatch, props, field)  => {
+	if (props.initialValues && props.initialValues.symbol == values.symbol) {
+		return Promise.resolve();
+	} else {
+		return axios
 		.post("/api//tickers/validate_symbol", {
 			symbol: values.symbol
 		})
@@ -242,6 +245,8 @@ export const validateSymbol = values => {
 		.catch(error => {
 			throw { symbol: "Already Exists" };
 		});
+	}
+		
 };
 
 // =============================================================================

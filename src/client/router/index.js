@@ -9,6 +9,7 @@ import Signup from "../react/pages/auth/signup"
 import Signout from "../react/pages/auth/signout"
 
 import TickersLibrary from "../react/pages/library/tickers"
+import Ticker from "../react/pages/library/tickers/Item"
 import ProxiesLibrary from "../react/pages/library/proxies"
 
 export default [
@@ -68,6 +69,14 @@ export default [
 					name: "tickers_library"
 				},
 
+			},
+			{
+				...Ticker,
+				path: "/library/tickers/:tickerId",
+				exact: true,
+				params: {
+					name: "ticker"
+				}
 			},
 			{
 				...ProxiesLibrary,

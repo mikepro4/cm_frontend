@@ -11,6 +11,7 @@ const Input = ({
 	large,
 	small,
 	right,
+	autoFocus,
 	meta: { touched, error }
 }) => {
 	let containerClassName = classnames({
@@ -40,6 +41,7 @@ const Input = ({
 					small={small}
 					autoComplete="new-password"
 					rightElement={right}
+					autoFocus={autoFocus ? true : false}
 				/>
 
 				{touched && error ? (

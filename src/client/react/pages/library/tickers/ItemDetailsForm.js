@@ -61,6 +61,13 @@ const validate = values => {
         errors.name = 'Please enter a name';
     }
 
+    if (values.symbol) {
+      let containsSpaces = values.symbol.indexOf(" ") >= 0;
+      if (containsSpaces) {
+        errors.symbol = "Can't contain spaces";
+      }
+    }
+
     return errors
 }
 
