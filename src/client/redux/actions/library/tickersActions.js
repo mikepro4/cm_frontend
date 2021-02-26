@@ -13,7 +13,9 @@ import {
   	UPDATE_TICKER_SUCCESS,
   	UPDATE_TICKER_FILTERS,
 	RESET_TICKER_FILTERS,
-	UPDATE_TICKER_COLLECTION_SETTINGS
+	UPDATE_TICKER_COLLECTION_SETTINGS,
+	LOAD_MORE_TICKERS,
+	LOAD_MORE_TICKERS_SUCCESS
 } from "../../actions/types";
 
 import { reset } from "redux-form";
@@ -65,7 +67,7 @@ export const searchTickers = (
 			limit: object.collectionSettings.limit,
 			order: object.collectionSettings.order.value 
 		}
-	);
+	)
 
 	dispatch({
 		type: SEARCH_TICKERS_SUCCESS,
@@ -101,6 +103,50 @@ export const searchTickersManual = (
 	}
 };
 // =============================================================================
+
+export const loadMoreTickers = (
+	offset,
+	limit,
+	success
+) => async (dispatch, getState, api) => {
+
+	let object = getState().tickersLibrary
+
+	dispatch({
+		type: LOAD_MORE_TICKERS
+	});
+
+	let criteria = getState().tickersLibrary.collectionFilters
+
+	console.log({
+		criteria,
+		sortProperty: object.collectionSettings.sortProperty.value,
+		offset: offset,
+		limit: limit,
+		order: object.collectionSettings.order.value 
+	}
+	)
+
+
+	const response = await api.post("/tickers/search", {
+			criteria,
+			sortProperty: object.collectionSettings.sortProperty.value,
+			offset: offset,
+			limit: limit,
+			order: object.collectionSettings.order.value 
+		}
+	);
+
+
+	dispatch({
+		type: LOAD_MORE_TICKERS_SUCCESS,
+		payload: response.data
+	});
+
+	if (response.data && success) {
+		success();
+	}
+};
 
 // =============================================================================
 

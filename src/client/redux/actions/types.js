@@ -46,6 +46,9 @@ export const RESET_TICKER_FILTERS = "app/RESET_TICKER_FILTERS";
 
 export const UPDATE_TICKER_COLLECTION_SETTINGS = "app/UPDATE_TICKER_COLLECTION_SETTINGS";
 
+export const LOAD_MORE_TICKERS = "app/LOAD_MORE_TICKERS";
+export const LOAD_MORE_TICKERS_SUCCESS = "app/LOAD_MORE_TICKERS_SUCCESS";
+
 // =============================================================================
 
 // =============================================================================

@@ -7,7 +7,8 @@ import ListResults from '../../../components/list/List_results'
 
 import {
 	searchTickers,
-	updateTickerCollectionSettings
+	updateTickerCollectionSettings,
+	loadMoreTickers
 } from '../../../../redux/actions/library/tickersActions'
 
 class Content extends Component {
@@ -35,6 +36,26 @@ class Content extends Component {
 	loadCollection = () => {
 		this.props.searchTickers();
 	}
+
+	loadMoreResults = () => {
+		this.props.loadMoreTickers(
+			this.props.tickers.collectionSettings.limit,
+			this.props.tickers.collectionSettings.limit + 10
+		);
+	};
+
+	renderLoadMoreButton = () => {
+		if (
+			this.props.tickers.loadedCollectionCount >
+			this.props.tickers.collectionSettings.limit 
+		) {
+			return (
+				<a className="anchor-button" onClick={() => this.loadMoreResults()}>
+					Load More
+				</a>
+			);
+		}
+	};
 
 	render() {
 		return (
@@ -69,6 +90,8 @@ class Content extends Component {
 					displayImage={true}
 					deleteItem={(id) => this.props.deleteItem(id)}
 				/>
+
+				{this.renderLoadMoreButton()}
             </div>
 		);
 	}
@@ -85,5 +108,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
 	searchTickers, 
-	updateTickerCollectionSettings
+	updateTickerCollectionSettings,
+	loadMoreTickers
 })(withRouter(Content));

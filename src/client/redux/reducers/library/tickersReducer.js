@@ -10,7 +10,9 @@ import {
     UPDATE_TICKER_SUCCESS,
     UPDATE_TICKER_FILTERS,
     RESET_TICKER_FILTERS,
-    UPDATE_TICKER_COLLECTION_SETTINGS
+    UPDATE_TICKER_COLLECTION_SETTINGS,
+    LOAD_MORE_TICKERS,
+	LOAD_MORE_TICKERS_SUCCESS
   } from "../../actions/types";
 
   import * as _ from "lodash";
@@ -32,7 +34,7 @@ import {
             value: "createdAt"
         },
         offset: 0,
-        limit: 0
+        limit: 10
     }
   };
   
@@ -97,6 +99,25 @@ import {
             return {
                 ...state,
                 collectionFilters: {}
+            }
+        case LOAD_MORE_TICKERS:
+            return {
+                ...state,
+                loading: true,
+                updateCollection: false
+            }
+        case LOAD_MORE_TICKERS_SUCCESS:
+            let newCollection = _.concat(state.loadedCollection, action.payload.all)
+            let newColSet = _.merge({}, state.collectionSettings, {
+                limit: action.payload.limit
+            })
+            
+            return {
+                ...state,
+                loading: false,
+                loadedCollection: newCollection,
+                loadedCollectionCount: action.payload.count,
+                collectionSettings: newColSet
             }
         case UPDATE_TICKER_COLLECTION_SETTINGS:
             let newColelctionSettings = _.merge({}, state.collectionSettings, {
