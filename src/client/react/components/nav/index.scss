@@ -1,5 +1,8 @@
 .nav-container {
     margin: 20px 0 0 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow-y: scroll;
 }
 
 .nav-group-container {

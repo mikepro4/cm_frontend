@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////
+// =============================================================================
 
 export const AUTH_USER = 'auth/AUTH_USER';
 export const AUTH_USER_SUCCESS = 'auth/AUTH_USER_SUCCESS';
@@ -9,4 +9,7 @@ export const AUTH_ERROR = 'auth_error';
 export const FETCH_MESSAGE = 'fetch_message';
 
 
-/////////////////////////////////////////////////
+// =============================================================================
+
+export const FETCH_AUTH = "app/FETCH_AUTH"
+export const AUTH_CLEAR = "app/AUTH_CLEAR"

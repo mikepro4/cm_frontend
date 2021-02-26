@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
-import { authUser, getUser } from "../client/redux/actions/auth_actions"
+import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/auth_actions"
 import Logo from "./react/components/logo"
+import classNames from "classnames";
 
 import Nav from './react/components/nav/'
 
@@ -11,9 +12,8 @@ class App extends Component {
 	componentDidMount() {
 		const token = localStorage.getItem('token');
 		if (token) {
-			console.log("auth")
 			this.props.authUser()
-			this.props.getUser()
+			this.props.fetchCurrentUser()
 		}
 	}
 	render() {
@@ -27,8 +27,23 @@ class App extends Component {
 					</div>
 
 					<Nav />
+					<div 
+						className="user-email"
+					>
+						<div 
+							className={classNames({
+									"email": true,
+									"bp3-skeleton": !this.props.app.user
+								})
+							}
+						>
+							{this.props.app.user && this.props.app.user.email}
+						</div>
 
-					<Link to="/auth/signout" className="signout">Signout</Link>
+						<Link to="/auth/signout" className="signout">Sign out</Link>
+
+					</div>
+					
 
 				</div>}
 				
@@ -43,13 +58,15 @@ class App extends Component {
 function mapStateToProps(state) {
 	return {
 		appReducer: state.appReducer,
-		authenticated: state.auth.authenticated
+		authenticated: state.auth.authenticated,
+		app: state.app
 	};
 }
 
 export default {
 	component: connect(mapStateToProps, {
 		authUser,
-		getUser
+		fetchCurrentUser,
+		clearCurrentUser
 	})(App)
 };

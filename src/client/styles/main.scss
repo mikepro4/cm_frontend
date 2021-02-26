@@ -105,24 +105,48 @@ a {
 		flex-grow: 0;
         flex-shrink: 0;
         background: $white;
-        width: 244px;
-        padding-bottom: 50px;
+		width: 244px;
+		height: 100%;
 		overflow-y: auto;
 		border-right: 1px solid $light-gray2;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
 	.app-route-container {
 		flex: 1 1;
 		position: relative;
 		background: $light-gray5;
+		
 	}
 
 	.app-logo {
 		margin: 30px 20px;
+		flex-grow: 0;
+		flex-shrink: 0;
+		display: flex;
 	}
 	
 	.signout {
 		margin: 20px;
+	}
+
+	.user-email {
+		flex-grow: 0;
+		flex-shrink: 0;
+		height: 80px;
+		width: 100%;
+		border-top: 1px solid $light-gray2;
+
+		.email {
+			width: 180px;
+			height: 20px;
+			margin: 20px 0 0 20px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
 	}
 }
 

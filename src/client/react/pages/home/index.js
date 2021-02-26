@@ -2,15 +2,28 @@ import React, { Component, useCallback, useEffect, useState, useRef, useMemo } f
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 const REACT_VERSION = React.version;
+import { fetchCurrentUser } from "../../../../client/redux/actions/auth_actions"
 
 
 class HomePage extends Component {
 
 	componentDidMount() {
+		
 		if(this.props.authenticated) {
 			this.props.history.push("/trending")
 		}
 	}
+
+	componentDidUpdate(prevprops) {
+		if(this.props.authenticated !== prevprops.authenticated) {
+			location.reload();
+
+			if(this.props.authenticated) {
+				this.props.history.push("/trending")
+			}
+		}
+	}
+
 
 	render() {
 
@@ -28,4 +41,6 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, {})(HomePage)
+export default connect(mapStateToProps, {
+	fetchCurrentUser
+})(HomePage)

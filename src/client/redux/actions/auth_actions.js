@@ -4,7 +4,9 @@ import {
     SIGNUP_USER,
     SIGNUP_USER_SUCCESS,
     UNAUTH_USER,
-    AUTH_ERROR
+    AUTH_ERROR,
+    FETCH_AUTH,
+    AUTH_CLEAR
 } from './types';
 
 /////////////////////////////////////////////////
@@ -59,8 +61,16 @@ export const signinUser = ({ email, password, history, success }) => async (
 			if (success) {
 				success(response.data);
             }
-            localStorage.setItem('token', response.data.token);
+            // dispatch(clearCurrentUser())
+            localStorage.setItem('token', response.data.token)
             history.push("/")
+            if(localStorage.getItem('token') == response.data.token) {
+                location.reload();
+                setTimeout(() => {
+                    dispatch(fetchCurrentUser())
+                }, 100)
+            }
+
 		})
 		.catch(() => {
             dispatch(authError('Incorrect credentials'));
@@ -90,6 +100,12 @@ export const signupUser = ({  email, password, history, success }) => async (
             }
             localStorage.setItem('token', response.data.token);
             history.push("/")
+            if(localStorage.getItem('token') == response.data.token) {
+                location.reload();
+                setTimeout(() => {
+                    dispatch(fetchCurrentUser())
+                }, 100)
+            }
         })
         .catch(() => {
             dispatch(authError('Account with this email already exists'));
@@ -106,6 +122,8 @@ export const signoutUser = (success) => async (
     dispatch({
         type: UNAUTH_USER
     });
+
+    dispatch(clearCurrentUser())
 
     localStorage.removeItem('token');
     console.log('sign out')
@@ -131,4 +149,22 @@ export const getUser = () => async (
 		.catch(() => {
             console.log("gail")
         });
+}
+
+/////////////////////////////////////////////////
+
+export const fetchCurrentUser = () => async (dispatch, getState, api) => {
+	const res = await api.get("user_details");
+
+	dispatch({
+		type: FETCH_AUTH,
+		payload: res.data
+	})
+}
+
+
+export const clearCurrentUser = () => async (dispatch, getState, api) => {
+	dispatch({
+		type: AUTH_CLEAR
+	})
 }

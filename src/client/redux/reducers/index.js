@@ -9,6 +9,6 @@ import { connectRouter } from "connected-react-router";
 export default (history) => combineReducers({
 	router: connectRouter(history),
 	form: formReducer,
-	appReducer: appReducer,
+	app: appReducer,
 	auth: authReducer
 })
