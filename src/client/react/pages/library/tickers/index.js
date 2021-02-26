@@ -7,6 +7,12 @@ import {
 	createTicker
 } from '../../../../redux/actions/library/tickersActions'
 
+import {
+	showTickerNewModal
+} from '../../../../redux/actions/modalActions'
+
+import TickerNewModal from "./TickerNewModal"
+
 import Content from './Content'
 import Sidebar from './Sidebar'
 
@@ -15,13 +21,14 @@ class TickersLibrary extends Component {
 	};
 
 	createTicker = () => {
-		this.props.createTicker({
-			symbol: "AAPL",
-			name: "Apple"
-		}, (data) => {
-			// this.props.history.push(`/manager/tickers/${data._id}`);
-			this.createTickerToast()
-		})
+		
+		// this.props.createTicker({
+		// 	symbol: "AAPL",
+		// 	name: "Apple"
+		// }, (data) => {
+		// 	// this.props.history.push(`/manager/tickers/${data._id}`);
+		// 	this.createTickerToast()
+		// })
 	}
 
 	createTickerToast = () => {
@@ -55,7 +62,7 @@ class TickersLibrary extends Component {
 										icon="add"
 										intent="primary"
 										text="Add new ticker"
-										onClick={() => this.createTicker()}
+										onClick={() => this.props.showTickerNewModal()}
 									/>
 								</li>
 							</ul>
@@ -66,6 +73,8 @@ class TickersLibrary extends Component {
 						<Content />
 						<Sidebar />
 					</div>
+
+					<TickerNewModal/>
 				</div>
 			);
 		} else {
@@ -83,6 +92,7 @@ function mapStateToProps(state) {
 
 export default {
 	component: connect(mapStateToProps, {
-		createTicker
+		createTicker,
+		showTickerNewModal
 	})(TickersLibrary)
 }

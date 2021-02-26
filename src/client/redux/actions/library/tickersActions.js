@@ -228,3 +228,27 @@ export const updateTickerCollectionSettings = (item, prop) => async (
 }
 
 // =============================================================================
+
+
+
+
+export const validateSymbol = (values, success) => async (
+	dispatch,
+	getState,
+	api
+) => {
+
+	return api
+		.post("/validate_symbol", {
+			symbol: values.symbol
+		})
+		.then(response => {
+			if (response.status === 200) {
+			}
+		})
+		.catch(error => {
+			throw { entityUrlName: "Already Exists" };
+		});
+		
+};
+// =============================================================================

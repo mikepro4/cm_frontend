@@ -16,6 +16,13 @@ export const AUTH_CLEAR = "app/AUTH_CLEAR"
 
 // =============================================================================
 
+// Modals
+
+export const SHOW_MODAL_TICKER_NEW = "app/SHOW_MODAL_TICKER_NEW"
+export const HIDE_MODAL_TICKER_NEW = "app/HIDE_MODAL_TICKER_NEW"
+
+// =============================================================================
+
 // Tickers
 
 export const CREATE_TICKER = "app/CREATE_TICKER";

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import commaNumber from 'comma-number'
-import {Button, MenuItem } from "@blueprintjs/core";
+import {Button, MenuItem, Icon, IconName } from "@blueprintjs/core";
 import { Select } from "@blueprintjs/select";
 
 class ListHeader extends Component {
@@ -50,7 +50,7 @@ class ListHeader extends Component {
 							<span className="sort-label">Order:</span> 
 							<span className="sort-value">
 								{this.props.collection.collectionSettings.order.label}
-								<span className={`bp3-icon bp3-icon-caret-down`} />
+								<Icon icon="caret-down"/>
 							</span>
 						</Select>
 					</div>
@@ -64,7 +64,7 @@ class ListHeader extends Component {
 							<span className="sort-label">Sort by:</span> 
 							<span className="sort-value">
 								{this.props.collection.collectionSettings.sortProperty.label}
-								<span className={`bp3-icon bp3-icon-caret-down`} />
+								<Icon icon="caret-down"/>
 							</span>
 						</Select>
 					</div>

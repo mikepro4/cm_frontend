@@ -249,6 +249,7 @@ a {
 		flex-shrink: 1;
 		position: relative;
 		display: flex;
+		overflow-y: scroll;
 
 		.route-sidebar {
 			width: 350px;
@@ -341,4 +342,8 @@ a {
 	bottom: 0;
 	justify-content: center;
 	align-items: center;
+}
+
+.dialog-content {
+	margin: 20px;
 }
