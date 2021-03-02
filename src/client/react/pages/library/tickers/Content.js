@@ -8,7 +8,9 @@ import ListResults from '../../../components/list/list_results'
 import {
 	searchTickers,
 	updateTickerCollectionSettings,
-	loadMoreTickers
+	loadMoreTickers,
+	updateTotalTickersPixels,
+	updateTotalScrolledTickersPixels
 } from '../../../../redux/actions/library/tickersActions'
 
 class Content extends Component {
@@ -39,12 +41,13 @@ class Content extends Component {
 					mainCollection={this.props.tickers}
 					searchCollection={()=> this.props.searchTickers()}
 					loadMoreCollectionResults={(limit, offset)=> this.props.loadMoreTickers(limit, offset)}
+					updateTotalPixels={(pixels) => this.props.updateTotalTickersPixels(pixels)}
+					updateTotalScrolledPixels={(pixels) => this.props.updateTotalScrolledTickersPixels(pixels)}
 					mainDisplayPropBig="symbol"
 					mainDisplayPropSmall="name"
 					secondaryDisplayProps={[
 					]}
 					itemUrl="/library/tickers"
-					displayImage={true}
 					deleteItem={(id) => this.props.deleteItem(id)}
 				/>
 				
@@ -65,5 +68,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
 	updateTickerCollectionSettings,
 	searchTickers,
-	loadMoreTickers
+	loadMoreTickers,
+	updateTotalTickersPixels,
+	updateTotalScrolledTickersPixels
 })(withRouter(Content));

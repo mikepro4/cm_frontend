@@ -49,6 +49,9 @@ export const UPDATE_TICKER_COLLECTION_SETTINGS = "app/UPDATE_TICKER_COLLECTION_S
 export const LOAD_MORE_TICKERS = "app/LOAD_MORE_TICKERS";
 export const LOAD_MORE_TICKERS_SUCCESS = "app/LOAD_MORE_TICKERS_SUCCESS";
 
+export const UPDATE_TOTAL_TICKERS_PIXELS = "app/UPDATE_TOTAL_TICKERS_PIXELS";
+export const UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS = "app/UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS";
+
 // =============================================================================
 
 // =============================================================================

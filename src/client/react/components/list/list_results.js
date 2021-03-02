@@ -8,22 +8,54 @@ import { Button } from "@blueprintjs/core";
 class ListResults extends Component {
 
 	componentDidMount() {
-		// if(this.props.user) {
-		//   this.loadCollection()
-		// }
+		let node = document.getElementById("results")
+		node.addEventListener('scroll', this.handleScroll);
+		window.addEventListener("resize", this.handleResize);
+
+		this.props.updateTotalPixels(node.scrollHeight, node.clientWidth, node.clientHeight)
+
+		setTimeout(() => {
+			this.forceUpdate()
+		  }, 1)
+
+		  if(this.props.mainCollection.totalScrolledPixels) {
+			node.scrollTop = this.props.mainCollection.totalScrolledPixels
+		  }
+
+		if(this.props.mainCollection && this.props.mainCollection.loadedCollectionCount == null) {
+			this.loadCollection()
+		}
+    
+	}
+
+	handleScroll = (event) => {
+		console.log(document.getElementById("results").scrollTop)
+		this.props.updateTotalScrolledPixels(document.getElementById("results").scrollTop)
+	}
+
+	handleResize = () => {
+		let node = document.getElementById("results")
+		this.props.updateTotalPixels(node.scrollHeight, node.clientWidth, node.clientHeight)
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener("resize", this.handleResize);
 	}
 
 	componentDidUpdate(prevprops) {
-		if(prevprops.user !== this.props.user) {
-			this.loadCollection()
-		}
+		// if(prevprops.user !== this.props.user) {
+		// 	this.loadCollection()
+		// }
 
 		if(prevprops.mainCollection.updateCollection !== this.props.mainCollection.updateCollection && this.props.mainCollection.updateCollection) {
 			this.loadCollection()
 		}
 
 		// if(prevprops.location.pathname !== this.props.location.pathname) {
-		// 	this.loadCollection()
+		// 	if(this.props.mainCollection && this.props.mainCollection.loadedCollectionCount == null) {
+		// 		this.loadCollection()
+		// 	}
+		// 	console.log("load here")
 		// }
 	}
 
@@ -65,7 +97,7 @@ class ListResults extends Component {
 	}
 	render() {
 		return (
-			<div className="list-results">
+			<div className="list-results" id="results">
 				{this.props.mainCollection.loadedCollection.map(item => {
 					return (
 						<div className="list-result-item" key={item._id}>

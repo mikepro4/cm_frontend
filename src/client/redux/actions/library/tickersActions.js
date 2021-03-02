@@ -15,7 +15,9 @@ import {
 	RESET_TICKER_FILTERS,
 	UPDATE_TICKER_COLLECTION_SETTINGS,
 	LOAD_MORE_TICKERS,
-	LOAD_MORE_TICKERS_SUCCESS
+	LOAD_MORE_TICKERS_SUCCESS,
+	UPDATE_TOTAL_TICKERS_PIXELS,
+	UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS
 } from "../../actions/types";
 
 import { reset } from "redux-form";
@@ -304,3 +306,24 @@ export const validateSymbol = (values, dispatch, props, field)  => {
 };
 
 // =============================================================================
+
+
+/////////////////////////////////////////////////
+
+export const updateTotalTickersPixels = (total, clientWidth, clientHeight) => async (dispatch, getState) => {
+	dispatch({
+		type: UPDATE_TOTAL_TICKERS_PIXELS,
+		total: total,
+		clientWidth: clientWidth,
+		clientHeight: clientHeight,
+	});
+}
+
+export const updateTotalScrolledTickersPixels = (px) => async (dispatch, getState) => {
+	dispatch({
+		type: UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS,
+		pixels: px
+	});
+}
+
+/////////////////////////////////////////////////

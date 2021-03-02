@@ -12,7 +12,9 @@ import {
     RESET_TICKER_FILTERS,
     UPDATE_TICKER_COLLECTION_SETTINGS,
     LOAD_MORE_TICKERS,
-	LOAD_MORE_TICKERS_SUCCESS
+    LOAD_MORE_TICKERS_SUCCESS,
+    UPDATE_TOTAL_TICKERS_PIXELS,
+    UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS
   } from "../../actions/types";
 
   import * as _ from "lodash";
@@ -35,7 +37,11 @@ import {
         },
         offset: 0,
         limit: 20
-    }
+    },
+    totalPixels: 0,
+	clientWidth: 0,
+	clientHeight: 0,
+	totalScrolledPixels: 0,
   };
   
   export const tickersReducer = (state = initialState, action) => {
@@ -122,12 +128,7 @@ import {
             let newColSet = _.merge({}, state.collectionSettings, {
                 limit: state.collectionSettings.limit + 20,
                 offset: state.collectionSettings.offset + 20
-            })
-            console.log({
-                limit: action.payload.limit,
-                offset: action.payload.offset
-            })
-            
+            })    
             return {
                 ...state,
                 loading: false,
@@ -143,6 +144,16 @@ import {
                 ...state,
                 collectionSettings: newColelctionSettings
             }
+        case UPDATE_TOTAL_TICKERS_PIXELS:
+            return _.assign({}, state, {
+                totalPixels: action.total,
+                clientWidth: action.clientWidth,
+                clientHeight: action.clientHeight
+            });
+        case UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS:
+            return _.assign({}, state, {
+                totalScrolledPixels: action.pixels
+            }); 
         default:
             return state;
         }
