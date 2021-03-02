@@ -24,7 +24,6 @@
             padding: 10px;
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid rgba($light-gray3, 0.4);
 
             .list-result-item-top-left, .list-result-item-top-right {
                 display: flex;
@@ -44,18 +43,26 @@
             }
 
             .item-main-details {
+
                 .item-main-details-small {
                     font-size: 11px;
                     margin: 0 0 5px 0;
                     letter-spacing: 0.7px;
                     color: $gray3;
                 }
+
                 .item-main-details-big {
                     font-size: 32px;
                     font-weight: bold;
                     margin: 0 0 5px 0;
                     line-height: 30px;
                     letter-spacing: 0.7px;
+                }
+
+                .item-main-details-cell {
+                    font-size: 20px;
+                    font-weight: medium;
+                    width: 100px;
                 }
             }
 

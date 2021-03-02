@@ -42,9 +42,6 @@ class ListResults extends Component {
 	}
 
 	componentDidUpdate(prevprops) {
-		// if(prevprops.user !== this.props.user) {
-		// 	this.loadCollection()
-		// }
 
 		if(prevprops.mainCollection.updateCollection !== this.props.mainCollection.updateCollection && this.props.mainCollection.updateCollection) {
 			this.loadCollection()
@@ -96,6 +93,8 @@ class ListResults extends Component {
 			</div>
 		)
 	}
+
+
 	render() {
 		return (
 			<div className="list-results" id="results">
@@ -123,8 +122,6 @@ class ListResults extends Component {
 
 								</div>
 
-								<div className="list-result-item-bottom">
-								</div>
 
 							</Link>
 
