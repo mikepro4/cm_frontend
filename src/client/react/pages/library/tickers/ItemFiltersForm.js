@@ -11,11 +11,6 @@ import Select from "../../../components/form/Select";
 import Textarea from "../../../components/form/Textarea";
 
 class ItemFiltersForm extends Component {
-    componentDidMount(){
-        if(this.symbolInput) {
-            this.symbolInput.focus();
-        }
-    }
 
 	render() {
 		const { handleSubmit } = this.props;

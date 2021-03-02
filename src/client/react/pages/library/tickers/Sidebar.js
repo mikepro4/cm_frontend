@@ -53,6 +53,8 @@ class Sidebar extends Component {
 				<div className="route-sidebar-content">
 					<ItemFiltersForm
 						onSubmit={this.handleSubmit.bind(this)}
+						enableReinitialize="true"
+						initialValues={this.props.tickers ? this.props.tickers.collectionFilters : ""}
 						onChange={(values) => this.props.updateTickerFilters(values)}
 					/>
 				</div>
@@ -64,7 +66,7 @@ class Sidebar extends Component {
 function mapStateToProps(state) {
 	return {
 		location: state.router.location,
-		tickers: state.tickersLibrary
+		tickers: state.tickersLibrary,
 	};
 }
 

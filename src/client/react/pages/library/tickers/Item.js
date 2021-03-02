@@ -98,7 +98,6 @@ class TickerPage extends Component {
 								large="true"
 								text="Back"
 								onClick={() => {
-										this.props.resetTickerFilters()
 										this.props.history.goBack()
 									}
 								}
