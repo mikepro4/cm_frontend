@@ -29,7 +29,6 @@ class ListResults extends Component {
 	}
 
 	handleScroll = (event) => {
-		console.log(document.getElementById("results").scrollTop)
 		this.props.updateTotalScrolledPixels(document.getElementById("results").scrollTop)
 	}
 
@@ -51,12 +50,14 @@ class ListResults extends Component {
 			this.loadCollection()
 		}
 
-		// if(prevprops.location.pathname !== this.props.location.pathname) {
-		// 	if(this.props.mainCollection && this.props.mainCollection.loadedCollectionCount == null) {
-		// 		this.loadCollection()
-		// 	}
-		// 	console.log("load here")
-		// }
+		const loadMore = document.getElementById("loadmore")
+
+		if(loadMore && !this.props.mainCollection.loading) { 
+			if((this.props.mainCollection.totalScrolledPixels + 200)  > (loadMore.offsetTop - this.props.mainCollection.totalPixels)) {
+				this.loadMoreResults()
+			}
+ 		}
+
 	}
 
 	loadCollection = () => {
@@ -76,7 +77,7 @@ class ListResults extends Component {
 			this.props.mainCollection.collectionSettings.limit 
 		) {
 			return (
-				<a className="anchor-button" onClick={() => this.loadMoreResults()}>
+				<a className="anchor-button" id="loadmore" onClick={() => this.loadMoreResults()}>
 					Load More
 				</a>
 			);
