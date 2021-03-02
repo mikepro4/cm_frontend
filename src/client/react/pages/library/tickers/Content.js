@@ -13,51 +13,6 @@ import {
 
 class Content extends Component {
 
-	componentDidMount() {
-		if(this.props.user) {
-		  this.loadCollection()
-		}
-	}
-
-	componentDidUpdate(prevprops) {
-		if(prevprops.user !== this.props.user) {
-			this.loadCollection()
-		}
-
-		if(prevprops.tickers.updateCollection !== this.props.tickers.updateCollection && this.props.tickers.updateCollection) {
-			this.loadCollection()
-		}
-
-		if(prevprops.location.pathname !== this.props.location.pathname) {
-			this.loadCollection()
-		}
-	}
-
-	loadCollection = () => {
-		this.props.searchTickers();
-	}
-
-	loadMoreResults = () => {
-		console.log("this.props.tickers.collectionSettings: ", this.props.tickers.collectionSettings)
-		this.props.loadMoreTickers(
-			this.props.tickers.collectionSettings.limit + 20,
-			this.props.tickers.collectionSettings.offset + 20
-		);
-	};
-
-	renderLoadMoreButton = () => {
-		if (
-			this.props.tickers.loadedCollectionCount >
-			this.props.tickers.collectionSettings.limit 
-		) {
-			return (
-				<a className="anchor-button" onClick={() => this.loadMoreResults()}>
-					Load More
-				</a>
-			);
-		}
-	};
-
 	render() {
 		return (
 			<div className="route-content">
@@ -81,18 +36,18 @@ class Content extends Component {
 					]}
 				/>
 				<ListResults
-					collection={this.props.tickers.loadedCollection}
+					mainCollection={this.props.tickers}
+					searchCollection={()=> this.props.searchTickers()}
+					loadMoreCollectionResults={(limit, offset)=> this.props.loadMoreTickers(limit, offset)}
 					mainDisplayPropBig="symbol"
 					mainDisplayPropSmall="name"
 					secondaryDisplayProps={[
 					]}
 					itemUrl="/library/tickers"
-					loading={this.props.tickers.loading}
 					displayImage={true}
 					deleteItem={(id) => this.props.deleteItem(id)}
 				/>
-
-				{this.renderLoadMoreButton()}
+				
             </div>
 		);
 	}
@@ -108,7 +63,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-	searchTickers, 
 	updateTickerCollectionSettings,
+	searchTickers,
 	loadMoreTickers
 })(withRouter(Content));

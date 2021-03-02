@@ -7,6 +7,50 @@ import { Button } from "@blueprintjs/core";
 
 class ListResults extends Component {
 
+	componentDidMount() {
+		// if(this.props.user) {
+		//   this.loadCollection()
+		// }
+	}
+
+	componentDidUpdate(prevprops) {
+		if(prevprops.user !== this.props.user) {
+			this.loadCollection()
+		}
+
+		if(prevprops.mainCollection.updateCollection !== this.props.mainCollection.updateCollection && this.props.mainCollection.updateCollection) {
+			this.loadCollection()
+		}
+
+		// if(prevprops.location.pathname !== this.props.location.pathname) {
+		// 	this.loadCollection()
+		// }
+	}
+
+	loadCollection = () => {
+		this.props.searchCollection();
+	}
+
+	loadMoreResults = () => {
+		this.props.loadMoreCollectionResults(
+			this.props.mainCollection.collectionSettings.limit + 20,
+			this.props.mainCollection.collectionSettings.offset + 20
+		)
+	};
+
+	renderLoadMoreButton = () => {
+		if (
+			this.props.mainCollection.loadedCollectionCount >
+			this.props.mainCollection.collectionSettings.limit 
+		) {
+			return (
+				<a className="anchor-button" onClick={() => this.loadMoreResults()}>
+					Load More
+				</a>
+			);
+		}
+	};
+
 	renderMainProps = (item) => {
 		return (
 			<div className="item-main-details">
@@ -19,29 +63,10 @@ class ListResults extends Component {
 			</div>
 		)
 	}
-
-	renderSecondaryProps = (item) => {
-		return (
-			<div className="item-secondary-details">
-				{this.props.secondaryDisplayProps.map(prop => {
-					return (
-						<div className="item-secondary-detail" key={prop.property}>
-							<div className="detail-label">
-								{prop.label}
-							</div>
-							<div className="detail-value">
-								{String(item.metadata[prop.property])}
-							</div>
-						</div>
-					)
-				})}
-			</div>
-		)
-	}
 	render() {
 		return (
 			<div className="list-results">
-				{this.props.collection.map(item => {
+				{this.props.mainCollection.loadedCollection.map(item => {
 					return (
 						<div className="list-result-item" key={item._id}>
 							<Link to={`${this.props.itemUrl}/${item._id}`}>
@@ -66,7 +91,6 @@ class ListResults extends Component {
 								</div>
 
 								<div className="list-result-item-bottom">
-									{this.renderSecondaryProps(item)}
 								</div>
 
 							</Link>
@@ -74,6 +98,8 @@ class ListResults extends Component {
 						</div>
 					)
 				})}
+
+				{this.renderLoadMoreButton()}
             </div>
 		);
 	}
@@ -81,8 +107,10 @@ class ListResults extends Component {
 
 function mapStateToProps(state) {
 	return {
-		location: state.router.location
-	};
+		user: state.app.user,
+		location: state.router.location,
+	};;
 }
 
-export default connect(mapStateToProps, {})(withRouter(ListResults));
+export default connect(mapStateToProps, {
+})(withRouter(ListResults));
