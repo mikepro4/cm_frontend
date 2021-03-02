@@ -1,4 +1,5 @@
 import * as _ from "lodash";
+import axios from "axios";
 
 import {
   	SEARCH_PROXYS,
@@ -12,7 +13,11 @@ import {
   	UPDATE_PROXY_SUCCESS,
   	UPDATE_PROXY_FILTERS,
 	RESET_PROXY_FILTERS,
-	UPDATE_PROXY_COLLECTION_SETTINGS
+	UPDATE_PROXY_COLLECTION_SETTINGS,
+	LOAD_MORE_PROXYS,
+	LOAD_MORE_PROXYS_SUCCESS,
+	UPDATE_TOTAL_PROXYS_PIXELS,
+	UPDATE_TOTAL_SCROLLED_PROXYS_PIXELS
 } from "../../actions/types";
 
 import { reset } from "redux-form";
@@ -49,22 +54,22 @@ export const searchProxies = (
 	success
 ) => async (dispatch, getState, api) => {
 
-	let object = getState().proxies
+	let object = getState().proxiesLibrary
 
 	dispatch({
 		type: SEARCH_PROXYS
 	});
 
-	let criteria = getState().proxies.collectionFilters
+	let criteria = getState().proxiesLibrary.collectionFilters
 
 	const response = await api.post("/proxies/search", {
 			criteria,
 			sortProperty: object.collectionSettings.sortProperty.value,
-			offset: object.collectionSettings.offset,
-			limit: object.collectionSettings.limit,
+			offset: 0,
+			limit: 20,
 			order: object.collectionSettings.order.value 
 		}
-	);
+	)
 
 	dispatch({
 		type: SEARCH_PROXYS_SUCCESS,
@@ -80,7 +85,7 @@ export const searchProxiesManual = (
 	criteria,
 	sortProperty,
 	offset = 0,
-	limit = 0,
+	limit = 10,
 	success
 ) => async (dispatch, getState, api) => {
 
@@ -100,6 +105,43 @@ export const searchProxiesManual = (
 	}
 };
 // =============================================================================
+
+export const loadMoreProxies = (
+	limit,
+	offset,
+	success
+) => async (dispatch, getState, api) => {
+
+	let object = getState().proxiesLibrary
+
+	dispatch({
+		type: LOAD_MORE_PROXYS
+	});
+
+	let criteria = getState().proxiesLibrary.collectionFilters
+
+	const response = await api.post("/proxies/search", {
+			criteria,
+			offset,
+			limit,
+			sortProperty: object.collectionSettings.sortProperty.value,
+			order: object.collectionSettings.order.value 
+		}
+	);
+
+
+	if (response.status === 200) {
+		console.log(response.data.all);
+		dispatch({
+			type: LOAD_MORE_PROXYS_SUCCESS,
+			payload: response.data
+		});
+	}
+
+	if (response.data && success) {
+		success();
+	}
+};
 
 // =============================================================================
 
@@ -228,3 +270,45 @@ export const updateProxyCollectionSettings = (item, prop) => async (
 }
 
 // =============================================================================
+
+export const validateIp = (values, dispatch, props, field)  => {
+	if (props.initialValues && props.initialValues.ip == values.ip) {
+		return Promise.resolve();
+	} else {
+		return axios
+		.post("/api/proxies/validate_ip", {
+			ip: values.ip
+		})
+		.then(response => {
+			if (response.status === 200) {
+			}
+		})
+		.catch(error => {
+			throw { ip: "Already Exists" };
+		});
+	}
+		
+};
+
+// =============================================================================
+
+
+/////////////////////////////////////////////////
+
+export const updateTotalProxiesPixels = (total, clientWidth, clientHeight) => async (dispatch, getState) => {
+	dispatch({
+		type: UPDATE_TOTAL_PROXYS_PIXELS,
+		total: total,
+		clientWidth: clientWidth,
+		clientHeight: clientHeight,
+	});
+}
+
+export const updateTotalScrolledProxiesPixels = (px) => async (dispatch, getState) => {
+	dispatch({
+		type: UPDATE_TOTAL_SCROLLED_PROXYS_PIXELS,
+		pixels: px
+	});
+}
+
+/////////////////////////////////////////////////

@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 import * as _ from 'lodash'
 
 import {
-	loadTicker,
-	deleteTicker,
-	clearCurrentTicker,
-	updateTicker,
-	resetTickerFilters,
-} from '../../../../redux/actions/library/tickersActions'
+	loadProxy,
+	deleteProxy,
+	clearCurrentProxy,
+	updateProxy,
+	resetProxyFilters,
+} from '../../../../redux/actions/library/proxiesActions'
 
 import ItemDetailsForm from "./ItemDetailsForm"
 
@@ -20,9 +20,9 @@ import {
 } from '../../../../redux/actions/formActions'
 
 
-class TickerPage extends Component {
+class ProxyPage extends Component {
 	static loadData(store, match) {
-		return store.dispatch(loadTicker(match.params.tickerId));
+		return store.dispatch(loadProxy(match.params.proxyId));
 	}
 
 	state = {
@@ -30,60 +30,60 @@ class TickerPage extends Component {
 	};
 
 	componentDidMount() {
-		this.props.loadTicker(this.props.match.params.tickerId, () => {
+		this.props.loadProxy(this.props.match.params.proxyId, () => {
 			console.log('load')
 		})
 	}
 
 	componentWillUnmount() {
-		this.props.clearCurrentTicker()
+		this.props.clearCurrentProxy()
 	}
 
 	componentDidUpdate(prevprops) {
-		if(prevprops.match.params.tickerId !== this.props.match.params.tickerId) {
-			this.props.loadTicker(this.props.match.params.tickerId)
+		if(prevprops.match.params.proxyId !== this.props.match.params.proxyId) {
+			this.props.loadProxy(this.props.match.params.proxyId)
 		}
 	}
 
-	saveTicker = () => {
-        this.props.submitForm("tickerNew")
-		this.props.loadTicker(this.props.match.params.tickerId)
-		his.props.history.push(`/library/tickers/`);
+	saveProxy = () => {
+        this.props.submitForm("proxyNew")
+        this.props.loadProxy(this.props.match.params.proxyId)
+        // this.props.history.push(`/library/proxies/`);
 	}
 
-	saveTickerToast = () => {
+	saveProxyToast = () => {
 		this.refs.toaster.show({
-		  message: "Ticker successully saved",
+		  message: "Proxy successully saved",
 		  intent: Intent.PRIMARY
 		});
 	}
 
-	deleteTickerToast = () => {
+	deleteProxyToast = () => {
 		this.refs.toaster.show({
-		  message: "Ticker successully deleted",
+		  message: "Proxy successully deleted",
 		  intent: Intent.SUCCESS
 		});
 	}
 
-	deleteTicker = () => {
-		this.props.deleteTicker(this.props.current._id)
-		this.props.history.push(`/library/tickers/`);
-		this.deleteTickerToast()
+	deleteProxy = () => {
+		this.props.deleteProxy(this.props.current._id)
+		this.props.history.push(`/library/proxies/`);
+		this.deleteProxyToast()
 	}
 	
 
 	renderHead = () => (
 		<Helmet>
-			<title>ticker Details Page</title>
+			<title>proxy Details Page</title>
 			<meta property="og:title" content="Homepage" />
 		</Helmet>
     )
     
     handleSubmit = values => {
-		let newTickerValues = _.merge({}, this.props.current.metadata, values)
-		this.props.updateTicker(this.props.current._id, newTickerValues, () => {
-			this.saveTickerToast()
-			this.props.history.push(`/library/tickers/`);
+		let newProxyValues = _.merge({}, this.props.current.metadata, values)
+		this.props.updateProxy(this.props.current._id, newProxyValues, () => {
+            this.saveProxyToast()
+            this.props.history.push(`/library/proxies/`);
         })
 	}
 
@@ -106,7 +106,7 @@ class TickerPage extends Component {
 							/>
                         </div>
 						<div className="route-title">
-                            {this.props.current && this.props.current.metadata && this.props.current.metadata.symbol}
+                            {this.props.current && this.props.current.metadata && this.props.current.metadata.ip}
                         </div>
 					</div>
 
@@ -116,16 +116,16 @@ class TickerPage extends Component {
 								<Button
 									icon="floppy-disk"
 									intent="primary"
-									text="Save ticker"
-									onClick={() => this.saveTicker()}
+									text="Save proxy"
+									onClick={() => this.saveProxy()}
 								/>
 							</li>
 							<li>
 								<Button
 									icon="trash"
 									intent="danger"
-									text="Delete ticker"
-									onClick={() => this.deleteTicker()}
+									text="Delete proxy"
+									onClick={() => this.deleteProxy()}
 								/>
 							</li>
 						</ul>
@@ -152,17 +152,17 @@ class TickerPage extends Component {
 
 function mapStateToProps(state) {
 	return {
-		current: state.tickersLibrary.current
+		current: state.proxiesLibrary.current
 	};
 }
 
 export default {
 	component: connect(mapStateToProps, {
-		loadTicker,
-		clearCurrentTicker,
-		updateTicker,
-		deleteTicker,
+		loadProxy,
+		clearCurrentProxy,
+		updateProxy,
+		deleteProxy,
 		submitForm,
-		resetTickerFilters,
-	})(TickerPage)
+		resetProxyFilters,
+	})(ProxyPage)
 }

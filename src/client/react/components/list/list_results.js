@@ -25,7 +25,10 @@ class ListResults extends Component {
 		if(this.props.mainCollection && this.props.mainCollection.loadedCollectionCount == null) {
 			this.loadCollection()
 		}
-    
+	
+		if(this.props.mainCollection.updateCollection) {
+			this.loadCollection()
+		}
 	}
 
 	handleScroll = (event) => {

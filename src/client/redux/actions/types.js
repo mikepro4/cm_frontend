@@ -21,6 +21,9 @@ export const AUTH_CLEAR = "app/AUTH_CLEAR"
 export const SHOW_MODAL_TICKER_NEW = "app/SHOW_MODAL_TICKER_NEW"
 export const HIDE_MODAL_TICKER_NEW = "app/HIDE_MODAL_TICKER_NEW"
 
+export const SHOW_MODAL_PROXY_NEW = "app/SHOW_MODAL_PROXY_NEW"
+export const HIDE_MODAL_PROXY_NEW = "app/HIDE_MODAL_PROXY_NEW"
+
 // =============================================================================
 
 // Tickers
@@ -78,6 +81,12 @@ export const UPDATE_PROXY_FILTERS = "app/UPDATE_PROXY_FILTERS";
 export const RESET_PROXY_FILTERS = "app/RESET_PROXY_FILTERS";
 
 export const UPDATE_PROXY_COLLECTION_SETTINGS = "app/UPDATE_PROXY_COLLECTION_SETTINGS";
+
+export const LOAD_MORE_PROXYS = "app/LOAD_MORE_PROXYS";
+export const LOAD_MORE_PROXYS_SUCCESS = "app/LOAD_MORE_PROXYS_SUCCESS";
+
+export const UPDATE_TOTAL_PROXYS_PIXELS = "app/UPDATE_TOTAL_PROXYS_PIXELS";
+export const UPDATE_TOTAL_SCROLLED_PROXYS_PIXELS = "app/UPDATE_TOTAL_SCROLLED_PROXYS_PIXELS";
 
 
 // =============================================================================

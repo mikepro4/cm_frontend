@@ -100,7 +100,8 @@ import {
             return {
                 ...state,
                 loading: false,
-                current: action.payload
+                current: action.payload,
+                updateCollection: true
             }
         case UPDATE_TICKER_FILTERS:
             return {
