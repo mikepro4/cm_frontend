@@ -14,6 +14,8 @@ export const FETCH_MESSAGE = 'fetch_message';
 export const FETCH_AUTH = "app/FETCH_AUTH"
 export const AUTH_CLEAR = "app/AUTH_CLEAR"
 
+export const UPDATE_COLLECTION_STATS = "app/UPDATE_COLLECTION_STATS"
+
 // =============================================================================
 
 // Modals

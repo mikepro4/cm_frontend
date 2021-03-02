@@ -3,11 +3,13 @@ import update from "immutability-helper";
 
 import {
 	FETCH_AUTH,
-	AUTH_CLEAR
+	AUTH_CLEAR,
+	UPDATE_COLLECTION_STATS
 } from "../actions/types";
 
 export const initialState = {
-	user: null
+	user: null,
+	collectionCounts: {}
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -21,6 +23,11 @@ export const appReducer = (state = initialState, action) => {
 			return {
 				...state,
 				user: null
+			}
+		case UPDATE_COLLECTION_STATS:
+			return {
+				...state,
+				collectionCounts: action.payload
 			}
 		default:
 			return state;

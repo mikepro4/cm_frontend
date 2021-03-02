@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/auth_actions"
+import { getCollectionStats} from "../client/redux/actions/appActions"
 import Logo from "./react/components/logo"
 import classNames from "classnames";
 
@@ -14,6 +15,11 @@ class App extends Component {
 		if (token) {
 			this.props.authUser()
 			this.props.fetchCurrentUser()
+			this.props.getCollectionStats()
+
+			setInterval(() => {
+				this.props.getCollectionStats()
+			}, 10000)
 		}
 	}
 	render() {
@@ -67,6 +73,7 @@ export default {
 	component: connect(mapStateToProps, {
 		authUser,
 		fetchCurrentUser,
-		clearCurrentUser
+		clearCurrentUser,
+		getCollectionStats
 	})(App)
 };

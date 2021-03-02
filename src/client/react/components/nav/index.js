@@ -13,7 +13,6 @@ class Nav extends Component {
 			{
 			  	url: "/trending",
 				name: "Trending",
-				count: 10
 			},
 			{
 			  	url: "/stocktube",
@@ -29,12 +28,10 @@ class Nav extends Component {
 			{
 				url: "/inbox/videos",
 				name: "Videos",
-				count: 535
 			},
 			{
 				url: "/inbox/channels",
 				name: "Channels",
-				count: 12
 			}
 		]
 
@@ -42,32 +39,28 @@ class Nav extends Component {
 			{
 				url: "/library/tickers",
 				name: "Tickers",
-				count: 20435
+				collectionName: "tickers"
 			},
 			{
 				url: "/library/proxies",
 				name: "Proxies",
-				count: 1342
+				collectionName: "proxies"
 			},
 			{
 				url: "/library/channels",
 				name: "Channels",
-				count: 562
 			},
 			{
 				url: "/library/videos",
 				name: "Videos",
-				count: 1356
 			},
 			{
 				url: "/library/groups",
 				name: "Groups",
-				count: 10
 			},
 			{
 				url: "/library/users",
 				name: "Users",
-				count: 100,
 				protected: true
 			}
 		]

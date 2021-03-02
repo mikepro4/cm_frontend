@@ -12,6 +12,8 @@ class NavLinks extends Component {
 
 	render() {
 
+        
+
 		const {links} = this.props
 
 		const format = commaNumber.bindWith(',', '.');
@@ -22,6 +24,12 @@ class NavLinks extends Component {
                     className={classNames({"active": !(this.props.location.pathname == "/")}, "nav-links")}
                 >
                     {links.map(link => {
+                        let count 
+
+                        if(this.props.collectionCounts[link.collectionName]) {
+                            count = this.props.collectionCounts[link.collectionName]
+                        }
+
                         return (
                             <li key={link.url} className={classNames("nav-link-container", {
                                     "nav-link-active": this.isActivePath(link.url)
@@ -33,13 +41,13 @@ class NavLinks extends Component {
                                             <span className="nav-link-label">{link.name}</span>
                                         </div>
 
-                                        {link.count && <div className="nav-link-right">
+                                        {count && <div className="nav-link-right">
                                             <span className="nav-link-right-label">
                                                 <Tag
                                                     intent={this.isActivePath(link.url) ? Intent.PRIMARY : Intent.NONE}
                                                     minimal={this.isActivePath(link.url) ? false : true}
                                                 >
-                                                    {format(link.count)}
+                                                    {format(count)}
                                                 </Tag>
                                             </span>
                                         </div>
@@ -59,7 +67,8 @@ class NavLinks extends Component {
 
 function mapStateToProps(state) {
 	return {
-        location: state.router.location
+        location: state.router.location,
+        collectionCounts: state.app.collectionCounts
 	};
 }
 
