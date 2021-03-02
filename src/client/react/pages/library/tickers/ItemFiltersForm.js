@@ -28,7 +28,6 @@ class ItemFiltersForm extends Component {
                         component={Input}
                         label="Symbol"
                         placeholder="Type ticker symbol..."
-                        autoFocus={true}
                         ref="symbol"
                     />
 

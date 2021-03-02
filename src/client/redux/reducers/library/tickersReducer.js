@@ -34,24 +34,30 @@ import {
             value: "createdAt"
         },
         offset: 0,
-        limit: 10
+        limit: 20
     }
   };
   
   export const tickersReducer = (state = initialState, action) => {
       switch (action.type) {
         case SEARCH_TICKERS:
+            let newColSetSearch = _.merge({}, state.collectionSettings, {
+                limit: 20,
+                offset: 0
+            })
             return {
                 ...state,
                 loading: true,
-                updateCollection: false
+                updateCollection: false,
+                collectionSettings: newColSetSearch,
+                loadedCollection: []
             }
         case SEARCH_TICKERS_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 loadedCollection: action.payload.all,
-                loadedCollectionCount: action.payload.count
+                loadedCollectionCount: action.payload.count,
             }
         case CREATE_TICKER:
             return {
@@ -101,15 +107,25 @@ import {
                 collectionFilters: {}
             }
         case LOAD_MORE_TICKERS:
+            let loadMoreColSet = _.merge({}, state.collectionSettings, {
+                limit: state.collectionSettings.limit + 20,
+                offset: state.collectionSettings.offset + 20
+            })
             return {
                 ...state,
                 loading: true,
-                updateCollection: false
+                updateCollection: false,
+                collectionSettings: loadMoreColSet
             }
         case LOAD_MORE_TICKERS_SUCCESS:
             let newCollection = _.concat(state.loadedCollection, action.payload.all)
             let newColSet = _.merge({}, state.collectionSettings, {
-                limit: action.payload.limit
+                limit: state.collectionSettings.limit + 20,
+                offset: state.collectionSettings.offset + 20
+            })
+            console.log({
+                limit: action.payload.limit,
+                offset: action.payload.offset
             })
             
             return {

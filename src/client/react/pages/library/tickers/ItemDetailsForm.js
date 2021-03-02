@@ -26,6 +26,7 @@ class TickerForm extends React.Component {
               propertyType: "string",
               label: "Symbol:",
               description: "Symbol...",
+              autoFocus: true
             }
           } 
         />

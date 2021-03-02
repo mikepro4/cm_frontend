@@ -24,7 +24,7 @@ class Content extends Component {
 			this.loadCollection()
 		}
 
-		if(prevprops.tickers.updateCollection !== this.props.tickers.updateCollection) {
+		if(prevprops.tickers.updateCollection !== this.props.tickers.updateCollection && this.props.tickers.updateCollection) {
 			this.loadCollection()
 		}
 
@@ -38,9 +38,10 @@ class Content extends Component {
 	}
 
 	loadMoreResults = () => {
+		console.log("this.props.tickers.collectionSettings: ", this.props.tickers.collectionSettings)
 		this.props.loadMoreTickers(
-			this.props.tickers.collectionSettings.limit,
-			this.props.tickers.collectionSettings.limit + 10
+			this.props.tickers.collectionSettings.limit + 20,
+			this.props.tickers.collectionSettings.offset + 20
 		);
 	};
 
@@ -80,12 +81,12 @@ class Content extends Component {
 					]}
 				/>
 				<ListResults
-                    collection={this.props.tickers.loadedCollection}
+					collection={this.props.tickers.loadedCollection}
 					mainDisplayPropBig="symbol"
 					mainDisplayPropSmall="name"
 					secondaryDisplayProps={[
 					]}
-                    itemUrl="/library/tickers"
+					itemUrl="/library/tickers"
 					loading={this.props.tickers.loading}
 					displayImage={true}
 					deleteItem={(id) => this.props.deleteItem(id)}

@@ -63,8 +63,8 @@ export const searchTickers = (
 	const response = await api.post("/tickers/search", {
 			criteria,
 			sortProperty: object.collectionSettings.sortProperty.value,
-			offset: object.collectionSettings.offset,
-			limit: object.collectionSettings.limit,
+			offset: 0,
+			limit: 20,
 			order: object.collectionSettings.order.value 
 		}
 	)
@@ -83,7 +83,7 @@ export const searchTickersManual = (
 	criteria,
 	sortProperty,
 	offset = 0,
-	limit = 0,
+	limit = 10,
 	success
 ) => async (dispatch, getState, api) => {
 
@@ -105,8 +105,8 @@ export const searchTickersManual = (
 // =============================================================================
 
 export const loadMoreTickers = (
-	offset,
 	limit,
+	offset,
 	success
 ) => async (dispatch, getState, api) => {
 
@@ -130,18 +130,26 @@ export const loadMoreTickers = (
 
 	const response = await api.post("/tickers/search", {
 			criteria,
+			offset,
+			limit,
 			sortProperty: object.collectionSettings.sortProperty.value,
-			offset: offset,
-			limit: limit,
 			order: object.collectionSettings.order.value 
 		}
 	);
 
 
-	dispatch({
-		type: LOAD_MORE_TICKERS_SUCCESS,
-		payload: response.data
-	});
+	// dispatch({
+	// 	type: LOAD_MORE_TICKERS_SUCCESS,
+	// 	payload: response.data
+	// });
+
+	if (response.status === 200) {
+		console.log(response.data.all);
+		dispatch({
+			type: LOAD_MORE_TICKERS_SUCCESS,
+			payload: response.data
+		});
+	}
 
 	if (response.data && success) {
 		success();
