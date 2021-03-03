@@ -10,8 +10,6 @@ import socketIOClient from "socket.io-client";
 
 import Nav from './react/components/nav/'
 
-const BASE_API_URL = process.env.BASE_API_URL  ?  "https://cashmachineapi.herokuapp.com:3100" : "http://localhost:3100";
-
 export let socket
 
 class App extends Component {
@@ -26,12 +24,12 @@ class App extends Component {
 				this.props.getCollectionStats()
 			}, 10000)
 		}
-		console.log(process.env.BASE_API_URL)
+		console.log(window.BASE_API_URL)
 	}
 	constructor() {
 		super();
 		this.state = {
-		  endpoint: BASE_API_URL // Update 3001 with port on which backend-my-app/server.js is running.
+		  endpoint: window.BASE_API_URL  ?  "https://cashmachineapi.herokuapp.com:3100" : "http://localhost:3100"
 		};
 	
 		socket = socketIOClient(this.state.endpoint);
