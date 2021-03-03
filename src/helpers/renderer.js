@@ -61,7 +61,7 @@ export default (
     <html lang="en">
       <head>
         ${helmetInstance.title.toString()}
-        ${helmetInstance.meta.toString()}
+		${helmetInstance.meta.toString()}
 				<link rel="stylesheet" href="/${buildAssets.bundle.css}">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
@@ -70,6 +70,8 @@ export default (
         <script>window.INITIAL_STATE= ${serialize(
 					reduxStore.getState()
 				)}</script>
+				window.BASE_API_URL = ${process.env.BASE_API_URL}
+
 				${injectAssets(buildAssets)}
       </body>
     </html>
