@@ -25,15 +25,17 @@ class App extends Component {
 			}, 10000)
 		}
 		console.log(window.BASE_API_URL)
+		this.setState({
+			endpoint: window.BASE_API_URL  ?  "https://cashmachineapi.herokuapp.com:3100" : "http://localhost:3100"
+		})
+		socket = socketIOClient(this.state.endpoint);
 	}
 	constructor() {
 		super();
 		this.state = {
-		  endpoint: window.BASE_API_URL  ?  "https://cashmachineapi.herokuapp.com:3100" : "http://localhost:3100"
+			endpoint: ""
 		};
-	
-		socket = socketIOClient(this.state.endpoint);
-	  }
+	}
 	render() {
 		
 		return (

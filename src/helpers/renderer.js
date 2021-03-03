@@ -69,8 +69,10 @@ export default (
         <div id="app">${content}</div>
         <script>window.INITIAL_STATE= ${serialize(
 					reduxStore.getState()
-				)}</script>
+				)}
 				window.BASE_API_URL = ${process.env.BASE_API_URL}
+				
+				</script>
 
 				${injectAssets(buildAssets)}
       </body>
