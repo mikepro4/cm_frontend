@@ -70,7 +70,7 @@ export default (
         <script>window.INITIAL_STATE= ${serialize(
 					reduxStore.getState()
 				)}
-				window.BASE_API_URL = "${process.env.BASE_API_URL}"
+				window.BASE_API_URL = ${process.env.BASE_API_URL}
 				
 				</script>
 

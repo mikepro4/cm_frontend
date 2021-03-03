@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Icon, Button, Position, Toaster, Classes, Intent, Spinner } from "@blueprintjs/core";
-import { socket } from "../../../App";
+
+import socketIOClient from "socket.io-client";
+
+import { io } from "../../../socket"
 
 class Scraping extends Component {
 	constructor() {
@@ -13,6 +16,7 @@ class Scraping extends Component {
 	}
 
 	componentDidMount() {
+		let socket = io()
 		socket.on('videoupdate',(data)=>{ 
 			let newVideos = [...this.state.videoUpdates, data]
 			this.setState({
