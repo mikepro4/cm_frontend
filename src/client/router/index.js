@@ -12,6 +12,7 @@ import TickersLibrary from "../react/pages/library/tickers"
 import Ticker from "../react/pages/library/tickers/Item"
 import ProxiesLibrary from "../react/pages/library/proxies"
 import Proxypage from "../react/pages/library/proxies/Item"
+import Scraping from "../react/pages/scraping"
 
 export default [
 	{
@@ -95,6 +96,15 @@ export default [
 				exact: true,
 				params: {
 					name: "proxies_library"
+				},
+
+			},
+			{
+				...Scraping,
+				path: "/system/scraping",
+				exact: true,
+				params: {
+					name: "scraping"
 				},
 
 			},
