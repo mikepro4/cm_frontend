@@ -2,11 +2,25 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Icon, Button, Position, Toaster, Classes, Intent, Spinner } from "@blueprintjs/core";
+import { socket } from "../../../App";
 
 class Scraping extends Component {
-	state = {
-	};
+	constructor() {
+		super();
+		this.state = {
+		  videoUpdates: []
+		};
+	}
 
+	componentDidMount() {
+		socket.on('videoupdate',(data)=>{ 
+			let newVideos = [...this.state.videoUpdates, data]
+			this.setState({
+				videoUpdates: newVideos
+			})
+			console.log(data)
+		})
+	}
 
 
 	renderHead = () => (
@@ -36,6 +50,11 @@ class Scraping extends Component {
 					</div>
 	
 					<div className="route-content-container">
+						{this.state.videoUpdates.map(video => {
+							return(<div>
+								{video.status} {video.ticker} {video.video.metadata.title}
+							</div>)
+						})}
 					</div>
 
 				</div>

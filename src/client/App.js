@@ -6,8 +6,13 @@ import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/ac
 import { getCollectionStats} from "../client/redux/actions/appActions"
 import Logo from "./react/components/logo"
 import classNames from "classnames";
+import socketIOClient from "socket.io-client";
 
 import Nav from './react/components/nav/'
+
+const BASE_API_URL = process.env.BASE_API_URL + ":3100" || "http://localhost:3100";
+
+export let socket
 
 class App extends Component {
 	componentDidMount() {
@@ -22,6 +27,14 @@ class App extends Component {
 			}, 10000)
 		}
 	}
+	constructor() {
+		super();
+		this.state = {
+		  endpoint: BASE_API_URL // Update 3001 with port on which backend-my-app/server.js is running.
+		};
+	
+		socket = socketIOClient(this.state.endpoint);
+	  }
 	render() {
 		
 		return (
