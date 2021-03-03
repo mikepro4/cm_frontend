@@ -10,7 +10,7 @@ import socketIOClient from "socket.io-client";
 
 import Nav from './react/components/nav/'
 
-const BASE_API_URL = "http://cashmachineapi.herokuapp.com:3100" || "http://localhost:3100";
+const BASE_API_URL = process.env.BASE_API_URL ?  "https://cashmachineapi.herokuapp.com:3100" : "http://localhost:3100";
 
 export let socket
 
@@ -26,6 +26,7 @@ class App extends Component {
 				this.props.getCollectionStats()
 			}, 10000)
 		}
+		console.log(process.env.BASE_API_URL)
 	}
 	constructor() {
 		super();
