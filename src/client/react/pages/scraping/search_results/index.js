@@ -6,6 +6,7 @@ import { Alignment, Classes, H3, H5, Position, Toaster, Intent, Spinner, InputGr
 
 import qs from "qs";
 import { updateQueryString } from "../../../../redux/actions/appActions";
+import { loadScrapingSearchResultsStatus } from "../../../../redux/actions/scraping/searchResults";
 import { io } from "../../../../socket"
 
 import TabStatus from "./tabStatus"
@@ -19,17 +20,6 @@ class ScrapingSearchResults extends Component {
 		};
 	}
 
-	componentDidMount() {
-		let socket = io()
-		socket.on('videoupdate',(data)=>{ 
-			let newVideos = [...this.state.videoUpdates, data]
-			this.setState({
-				videoUpdates: newVideos
-			})
-			console.log(data)
-		})
-    }
-    
     componentDidUpdate = (prevProps, prevState) => {
 		if (prevState.selectedTabId !== this.getQueryParams().selectedTabId) {
 			this.setState({
@@ -43,6 +33,17 @@ class ScrapingSearchResults extends Component {
     };
     
     componentDidMount = () => {
+
+		this.props.loadScrapingSearchResultsStatus()
+		let socket = io()
+		socket.on('videoupdate',(data)=>{ 
+			let newVideos = [...this.state.videoUpdates, data]
+			this.setState({
+				videoUpdates: newVideos
+			})
+			console.log(data)
+		})
+
 		if (this.props.location.search) {
 			let queryParams = this.getQueryParams();
 			this.setState({
@@ -110,6 +111,7 @@ function mapStateToProps(state) {
 
 export default {
 	component: connect(mapStateToProps, {
-        updateQueryString
+		updateQueryString,
+		loadScrapingSearchResultsStatus
 	})(ScrapingSearchResults)
 }

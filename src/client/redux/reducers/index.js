@@ -7,6 +7,7 @@ import { connectRouter } from "connected-react-router";
 import { tickersReducer } from "./library/tickersReducer";
 import { proxiesReducer } from "./library/proxiesReducer";
 import { modalsReducer } from "./modalsReducer";
+import { scrapingSearchResults } from "./scraping/searchResultsReducer";
 
 export default (history) => combineReducers({
 	router: connectRouter(history),
@@ -16,4 +17,5 @@ export default (history) => combineReducers({
 	modals: modalsReducer,
 	tickersLibrary: tickersReducer,
 	proxiesLibrary: proxiesReducer,
+	scrapingSearchResults: scrapingSearchResults
 })
