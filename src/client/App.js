@@ -12,6 +12,12 @@ import Nav from './react/components/nav/'
 
 import { FocusStyleManager } from "@blueprintjs/core";
 
+import { 
+	updateTickersSearchResults,
+	updateVideosSearchResults
+} from "./redux/actions/scraping/searchResults";
+import { io } from "./socket"
+
 FocusStyleManager.onlyShowFocusOnTabs();
 
 export let socket
@@ -28,11 +34,16 @@ class App extends Component {
 				this.props.getCollectionStats()
 			}, 10000)
 		}
-		// console.log(window.BASE_API_URL)
-		// this.setState({
-		// 	endpoint: window.BASE_API_URL  ?  "https://cashmachineapi.herokuapp.com:3100" : "http://localhost:3100"
-		// })
-		// socket = socketIOClient("https://cashmachineapi.herokuapp.com:3100");
+
+		let socket = io()
+
+		socket.on('tickerUpdate',(data)=> { 
+			this.props.updateTickersSearchResults(data)
+		})
+
+		socket.on('videoUpdate',(data)=>{ 
+			this.props.updateVideosSearchResults(data)
+		})
 
 	}
 	constructor() {
@@ -96,6 +107,8 @@ export default {
 		authUser,
 		fetchCurrentUser,
 		clearCurrentUser,
-		getCollectionStats
+		getCollectionStats,
+		updateTickersSearchResults,
+		updateVideosSearchResults
 	})(App)
 };

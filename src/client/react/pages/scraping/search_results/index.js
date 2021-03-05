@@ -41,14 +41,14 @@ class ScrapingSearchResults extends Component {
 		let socket = io()
 
 		// KEY TO SOCKETS
-		
-		socket.on('tickerUpdate',(data)=> { 
-			this.props.updateTickersSearchResults(data)
-		})
 
-		socket.on('videoUpdate',(data)=>{ 
-			this.props.updateVideosSearchResults(data)
-		})
+		// socket.on('tickerUpdate',(data)=> { 
+		// 	this.props.updateTickersSearchResults(data)
+		// })
+
+		// socket.on('videoUpdate',(data)=>{ 
+		// 	this.props.updateVideosSearchResults(data)
+		// })
 
 		if (this.props.location.search) {
 			let queryParams = this.getQueryParams();
