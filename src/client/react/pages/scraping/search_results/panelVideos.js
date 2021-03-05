@@ -6,7 +6,7 @@ import classNames from "classnames"
 class PanelVideos extends Component {
 	render() {
 		return (
-			<div className="panel panel-videos-container">
+			<div className="panel videos-container">
                 <div className="panel-header">
                     <div className="panel-header-left">
                         <div className="panel-name">VIDEOS</div>
@@ -16,7 +16,11 @@ class PanelVideos extends Component {
                     </div>
                 </div>
                 <div className="panel-content">
-                    content
+                    {this.props.videos.map(video => {
+                        return(<div key={video.status + video.ticker + new Date() + Math.random()}>
+                            {video.status} {video.ticker} {video.video.metadata.title}
+                        </div>)
+                    })}
                 </div>
             </div>
         )
@@ -25,6 +29,7 @@ class PanelVideos extends Component {
 
 function mapStateToProps(state) {
 	return {
+        videos: state.scrapingSearchResults.videos
 	};
 }
 

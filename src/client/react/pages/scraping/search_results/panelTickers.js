@@ -16,7 +16,13 @@ class PanelTickers extends Component {
                     </div>
                 </div>
                 <div className="panel-content">
-                    content
+                    {this.props.tickers.map(ticker => {
+							return(<div key={ticker.ticker + new Date() + Math.random()}>
+								{ticker.ticker} {ticker.proxy}
+                            </div>
+                            )
+                        }
+                    )}
                 </div>
             </div>
         )
@@ -25,6 +31,7 @@ class PanelTickers extends Component {
 
 function mapStateToProps(state) {
 	return {
+        tickers: state.scrapingSearchResults.tickers
 	};
 }
 

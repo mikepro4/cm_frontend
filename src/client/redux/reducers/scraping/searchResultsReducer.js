@@ -90,14 +90,14 @@ import {
                 previousCycle: action.payload
             }
         case UPDATE_TICKERS_SEARCH_RESULTS:
-            let newTickersCollection = _.concat(state.tickers, action.payload).slice(0, 100)
+            let newTickersCollection = _.concat([action.payload], state.tickers ).slice(0, 100)
             return {
                 ...state,
                 loading: false,
                 tickers: newTickersCollection
             }
         case UPDATE_VIDEOS_SEARCH_RESULTS:
-            let newVideosCollection = _.concat(state.videos, action.payload).slice(0, 100)
+            let newVideosCollection = _.concat([action.payload], state.videos).slice(0, 100)
             return {
                 ...state,
                 loading: false,
