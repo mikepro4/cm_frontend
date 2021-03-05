@@ -65,14 +65,14 @@ class Nav extends Component {
 			}
 		]
 
-		let systemLinks = [
+		let scrapingLinks = [
 			{
-				url: "/system/scraping",
-				name: "Scraping",
+				url: "/scraping/search_results",
+				name: "Search Results",
 			},
 			{
-				url: "/system/settings",
-				name: "Settings",
+				url: "/scraping/proxies",
+				name: "Proxies",
 			}
 		]
 
@@ -93,8 +93,8 @@ class Nav extends Component {
                 />
 
                 <NavGroup
-                    name="System"
-                    links={systemLinks}
+                    name="Scraping"
+                    links={scrapingLinks}
                 />
             </div>
         )

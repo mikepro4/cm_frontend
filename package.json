@@ -75,6 +75,7 @@
 		"moment": "^2.20.1",
 		"npm": "^6.4.1",
 		"postcss-loader": "^2.0.9",
+		"qs": "^6.9.6",
 		"react": "^17.0.1",
 		"react-addons-css-transition-group": "^15.6.2",
 		"react-dom": "^17.0.1",

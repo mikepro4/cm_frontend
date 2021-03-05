@@ -1,0 +1,27 @@
+.status-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+
+    .status-panel {
+        width: 40%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        min-width: 600px;
+        border-right: $lightBorder;
+        max-width: 700px;
+    }
+
+    .ticker-panel {
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 250px;
+        border-right: $lightBorder;
+    }
+
+    .video-panel{
+        flex: 1 1;
+        min-width: 600px;
+    }
+}

@@ -10,6 +10,10 @@ import socketIOClient from "socket.io-client";
 
 import Nav from './react/components/nav/'
 
+import { FocusStyleManager } from "@blueprintjs/core";
+
+FocusStyleManager.onlyShowFocusOnTabs();
+
 export let socket
 
 class App extends Component {

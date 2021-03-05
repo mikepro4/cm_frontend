@@ -21,6 +21,7 @@
 
 //Pages
 @import "../react/pages/auth/auth";
+@import "../react/pages/scraping/search_results/tabStatus";
 
 html {
 	// overflow: hidden;
@@ -354,4 +355,49 @@ a {
 
 .results-container {
 	flex-grow: 1;flex-shrink: 1;
+}
+
+.route-scraping {
+	background: $white
+}
+
+.route-title-tabs {
+	padding: 20px 20px 10px 20px;
+	font-size: 34px;
+	font-weight: 300;
+	letter-spacing: 1px;
+	position: relative;
+	color: $gray4;
+	top: -3px;
+
+	span {
+		color: $black;
+		font-weight: 400;
+	}
+}
+
+.bp3-tabs {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+
+	.bp3-tab {
+		position: relative;
+		top: 1px;
+	}
+
+	.bp3-tab-list  {
+		flex-grow: 0;
+		flex-shrink: 0;
+		padding: 0 20px 0 20px;
+		border-bottom: $lightBorder;
+	}
+
+	.bp3-tab-panel {
+		flex-grow: 1;
+		flex-shrink: 1;
+		margin-top: 0;
+		overflow-y: scroll;
+	}
 }
