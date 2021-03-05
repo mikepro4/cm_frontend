@@ -3,15 +3,25 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import classNames from "classnames"
 
+import PanelStatus from "./panelStatus"
+import PanelTickers from "./panelTickers"
+import PanelVideos from "./panelVideos"
+
 class TabStatus extends Component {
 
 	render() {
 
 		return (
 			<div className="status-container">
-                <div className="status-panel">status</div>
-                <div className="ticker-panel">tidker</div>
-                <div className="video-panel">videos</div>
+                <div className="status-panel">
+                    <PanelStatus />
+                </div>
+                <div className="ticker-panel">
+                    <PanelTickers />
+                </div>
+                <div className="video-panel">
+                    <PanelVideos />
+                </div>
             </div>
         )
 	}

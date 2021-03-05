@@ -25,3 +25,35 @@
         min-width: 600px;
     }
 }
+
+.panel {
+    width: 100%;
+    height: 100%;
+}
+
+.panel-header {
+    padding: 12px 15px;
+    border-bottom: $lightBorder;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    .panel-name {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1.4px;
+        font-weight: 600;
+        color: $gray1;
+    }
+}
+
+.tickers-container, .videos-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.panel-content {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow-y: scroll;
+}
