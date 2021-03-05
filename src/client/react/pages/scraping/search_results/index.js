@@ -6,7 +6,11 @@ import { Alignment, Classes, H3, H5, Position, Toaster, Intent, Spinner, InputGr
 
 import qs from "qs";
 import { updateQueryString } from "../../../../redux/actions/appActions";
-import { loadScrapingSearchResultsStatus } from "../../../../redux/actions/scraping/searchResults";
+import { 
+	loadScrapingSearchResultsStatus,
+	updateTickersSearchResults,
+	updateVideosSearchResults
+} from "../../../../redux/actions/scraping/searchResults";
 import { io } from "../../../../socket"
 
 import TabStatus from "./tabStatus"
@@ -15,8 +19,7 @@ class ScrapingSearchResults extends Component {
 	constructor() {
 		super();
 		this.state = {
-          videoUpdates: [],
-          selectedTabId: "1"
+        	selectedTabId: "1"
 		};
 	}
 
@@ -36,12 +39,15 @@ class ScrapingSearchResults extends Component {
 
 		this.props.loadScrapingSearchResultsStatus()
 		let socket = io()
-		socket.on('videoupdate',(data)=>{ 
-			let newVideos = [...this.state.videoUpdates, data]
-			this.setState({
-				videoUpdates: newVideos
-			})
-			console.log(data)
+
+		// KEY TO SOCKETS
+		
+		socket.on('tickerUpdate',(data)=> { 
+			this.props.updateTickersSearchResults(data)
+		})
+
+		socket.on('videoUpdate',(data)=>{ 
+			this.props.updateVideosSearchResults(data)
 		})
 
 		if (this.props.location.search) {
@@ -112,6 +118,8 @@ function mapStateToProps(state) {
 export default {
 	component: connect(mapStateToProps, {
 		updateQueryString,
-		loadScrapingSearchResultsStatus
+		loadScrapingSearchResultsStatus,
+		updateTickersSearchResults,
+		updateVideosSearchResults
 	})(ScrapingSearchResults)
 }

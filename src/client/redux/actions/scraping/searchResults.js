@@ -21,7 +21,11 @@ export const startScrapingSearchResults = (success) => async (dispatch, getState
         type: START_SCRAPING_SEARCH_RESULTS
     });
 
-	const res = await api.get("/scraping/search_results/start");
+    let id = getState().scrapingSearchResults.scrapingStatus._id;
+
+	const res = await api.post("/scraping/search_results/start", {
+        id: id
+    });
 
 	dispatch({
 		type: START_SCRAPING_SEARCH_RESULTS_SUCCESS,
@@ -41,7 +45,11 @@ export const stopScrapingSearchResults = (success) => async (dispatch, getState,
         type: STOP_SCRAPING_SEARCH_RESULTS
     });
 
-	const res = await api.get("/scraping/search_results/stop");
+    let id = getState().scrapingSearchResults.scrapingStatus._id;
+
+	const res = await api.post("/scraping/search_results/stop", {
+        id
+    });
 
 	dispatch({
 		type: STOP_SCRAPING_SEARCH_RESULTS_SUCCESS,
@@ -95,11 +103,11 @@ export const loadScrapingSearchResultsStatus = (success) => async (dispatch, get
 
 // =============================================================================
 
-export const updateTickersSearchResults = (videos, success) => async (dispatch, getState, api) => {
+export const updateTickersSearchResults = (data, success) => async (dispatch, getState, api) => {
 
     dispatch({
-        type: UPDATE_VIDEOS_SEARCH_RESULTS,
-        payload: cycle
+        type: UPDATE_TICKERS_SEARCH_RESULTS,
+        payload: data
     });
 
     if (success) {
@@ -109,11 +117,11 @@ export const updateTickersSearchResults = (videos, success) => async (dispatch, 
 
 // =============================================================================
 
-export const updateVideosSearchResults = (tickers, success) => async (dispatch, getState, api) => {
+export const updateVideosSearchResults = (data, success) => async (dispatch, getState, api) => {
 
     dispatch({
-        type: UPDATE_TICKERS_SEARCH_RESULTS,
-        payload: cycle
+        type: UPDATE_VIDEOS_SEARCH_RESULTS,
+        payload: data
     });
 
     if (success) {

@@ -74,7 +74,8 @@ import {
             return {
                 ...state,
                 loading: false,
-                scrapingStatus: action.payload
+                scrapingStatus: action.payload,
+                active: action.payload.scrapingSearchActive
             }
         case UPDATE_CURRENT_CYCLE_SEARCH_RESULTS:
             return {
