@@ -6,7 +6,8 @@ import classNames from "classnames";
 import { Dialog, Button, Intent, ButtonGroup, Position, Toaster, Classes } from "@blueprintjs/core";
 
 import {
-	createProxy
+	createProxy,
+	testProxy
 } from '../../../../redux/actions/library/proxiesActions'
 
 import {
@@ -15,7 +16,6 @@ import {
 
 import {
     submitForm
-    
 } from '../../../../redux/actions/formActions'
 
 import ItemDetailsForm from "./ItemDetailsForm"
@@ -39,17 +39,37 @@ class OntologyLinker extends Component {
 			intent: Intent.PRIMARY
 		});
 	}
+
+	bannedProxy = () => {
+		this.refs.toaster.show({
+			message: "Banned proxy",
+			intent: Intent.DANGER
+		});
+	}
+
+	notWorkingProxy = () => {
+		this.refs.toaster.show({
+			message: "Not working proxy",
+			intent: Intent.DANGER
+		});
+	}
     
     createProxy = () => {
         // this.props.validateForm("proxyNew")
         if(!this.props.proxyNewForm.syncErrors) {
-            this.props.createProxy({
-                ip: this.props.proxyNewForm.values.ip,
-                port: this.props.proxyNewForm.values.port
-            }, (data) => {
-                this.onClose()
-                this.createProxyToast()
-            })
+			this.props.testProxy(this.props.proxyNewForm.values.ip, 
+				() => {
+					this.props.createProxy({
+						ip: this.props.proxyNewForm.values.ip,
+						source: this.props.proxyNewForm.values.source
+					}, (data) => {
+						this.onClose()
+						this.createProxyToast()
+					})
+				},
+				() =>  this.bannedProxy(),
+				() =>  this.notWorkingProxy()
+			)
         }
     }
     
@@ -97,5 +117,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
     hideProxyNewModal,
     submitForm,
-    createProxy
+	createProxy,
+	testProxy
 })(OntologyLinker)

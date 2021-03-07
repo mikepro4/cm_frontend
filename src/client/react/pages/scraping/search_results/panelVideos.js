@@ -17,7 +17,11 @@ class PanelVideos extends Component {
             {filteredVideos.map(video => {
                 if(video && video.status) {
                     return(<div key={video.status + video.ticker + new Date() + Math.random()}>
-                    {video.status} {video.ticker} {video.video.metadata.title}
+                    {video.status} {video.ticker} 
+                    <a href={"https://www.youtube.com/watch?v=" + video.video.googleId}
+                    target="_blank">
+                        {video.video.metadata.title}</a>
+                    
                 </div>)
                 }
                 

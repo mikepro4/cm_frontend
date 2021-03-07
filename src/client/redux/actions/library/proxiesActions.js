@@ -17,7 +17,9 @@ import {
 	LOAD_MORE_PROXYS,
 	LOAD_MORE_PROXYS_SUCCESS,
 	UPDATE_TOTAL_PROXYS_PIXELS,
-	UPDATE_TOTAL_SCROLLED_PROXYS_PIXELS
+	UPDATE_TOTAL_SCROLLED_PROXYS_PIXELS,
+	TEST_PROXY,
+	TEST_PROXY_SUCCESS
 } from "../../actions/types";
 
 import { reset } from "redux-form";
@@ -312,3 +314,37 @@ export const updateTotalScrolledProxiesPixels = (px) => async (dispatch, getStat
 }
 
 /////////////////////////////////////////////////
+
+// =============================================================================
+
+export const testProxy = (proxy, addProxy, bannedProxy, notWorkingProxy) => async (
+	dispatch,
+	getState,
+	api
+) => {
+
+	dispatch({
+		type: TEST_PROXY,
+	});
+
+    const response = await api.post("/proxies/test", { proxy });
+    
+    if(response.status == 200) {
+        dispatch({
+			type: TEST_PROXY_SUCCESS,
+			payload: response.data 
+		});
+
+		if(response.data.working) {
+			addProxy()
+		}
+
+		if(response.data.banned) {
+			bannedProxy()
+		}
+
+		if(!response.data.banned  && !response.data.working) {
+			notWorkingProxy()
+		}
+	}
+};

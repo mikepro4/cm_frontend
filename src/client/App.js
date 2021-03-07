@@ -46,15 +46,7 @@ class App extends Component {
 		})
 
 	}
-	constructor() {
-		super();
-		this.state = {
-		  endpoint: "http://localhost:3100"
-		};
-		// console.log(location)
-	
-		// socket = socketIOClient(this.state.endpoint);
-	  }
+
 	render() {
 		
 		return (

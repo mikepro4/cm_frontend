@@ -97,7 +97,7 @@ import {
                 tickers: newTickersCollection
             }
         case UPDATE_VIDEOS_SEARCH_RESULTS:
-            let newVideosCollection = _.concat([action.payload], state.videos).slice(0, 100)
+            let newVideosCollection = _.concat([action.payload], state.videos).slice(0, 2000)
             return {
                 ...state,
                 loading: false,

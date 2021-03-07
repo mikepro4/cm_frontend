@@ -34,11 +34,11 @@ class ProxyForm extends React.Component {
         <RenderField 
           property={
             {
-              propertyName: "port",
+              propertyName: "source",
               fieldType: "input",
               propertyType: "string",
-              label: "Port:",
-              description: "Port...",
+              label: "Source:",
+              description: "Source...",
             }
           } 
         />
@@ -55,11 +55,7 @@ const validate = values => {
     const errors = {}
 
     if (!values.ip) {
-        errors.ip = 'Please enter a symbol';
-    }
-
-    if (!values.port) {
-        errors.port = 'Please enter a port';
+        errors.ip = 'Please enter proxy';
     }
 
     if (values.ip) {

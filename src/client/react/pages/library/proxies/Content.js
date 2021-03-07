@@ -32,8 +32,8 @@ class Content extends Component {
 							label: "IP"
 						},
 						{
-							value: "port",
-							label: "Port"
+							value: "source",
+							label: "Source"
 						}
 					]}
 				/>
@@ -44,7 +44,7 @@ class Content extends Component {
 					updateTotalPixels={(pixels) => this.props.updateTotalProxiesPixels(pixels)}
 					updateTotalScrolledPixels={(pixels) => this.props.updateTotalScrolledProxiesPixels(pixels)}
 					mainDisplayPropBig="ip"
-					mainDisplayPropSmall="port"
+					mainDisplayPropSmall="source"
 					secondaryDisplayProps={[
 					]}
 					itemUrl="/library/proxies"

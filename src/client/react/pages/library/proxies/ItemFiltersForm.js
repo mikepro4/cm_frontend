@@ -27,11 +27,11 @@ class ItemFiltersForm extends Component {
                     />
 
                     <Field
-                        name="port"
+                        name="source"
                         component={Input}
-                        label="port"
-                        placeholder="Port..."
-                        ref="port"
+                        label="source"
+                        placeholder="Source..."
+                        ref="source"
                     />
                     
 		            <Button
