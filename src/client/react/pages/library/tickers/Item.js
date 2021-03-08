@@ -48,7 +48,7 @@ class TickerPage extends Component {
 	saveTicker = () => {
         this.props.submitForm("tickerNew")
 		this.props.loadTicker(this.props.match.params.tickerId)
-		his.props.history.push(`/library/tickers/`);
+		this.props.history.push(`/library/tickers/`);
 	}
 
 	saveTickerToast = () => {
