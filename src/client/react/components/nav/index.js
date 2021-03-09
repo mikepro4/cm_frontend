@@ -49,6 +49,7 @@ class Nav extends Component {
 			{
 				url: "/library/channels",
 				name: "Channels",
+				collectionName: "channels"
 			},
 			{
 				url: "/library/videos",
@@ -58,6 +59,7 @@ class Nav extends Component {
 			{
 				url: "/library/groups",
 				name: "Groups",
+				collectionName: "groups"
 			},
 			{
 				url: "/library/users",
