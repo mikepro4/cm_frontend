@@ -59,6 +59,36 @@ export const UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS = "app/UPDATE_TOTAL_SCROLLED_T
 
 // =============================================================================
 
+// Videos
+
+export const CREATE_VIDEO = "app/CREATE_VIDEO";
+export const CREATE_VIDEO_SUCCESS = "app/CREATE_VIDEO_SUCCESS";
+export const DELETE_VIDEO = "app/DELETE_VIDEO";
+export const DELETE_VIDEO_SUCCESS = "app/DELETE_VIDEO_SUCCESS";
+
+export const SEARCH_VIDEOS = "app/SEARCH_VIDEOS";
+export const SEARCH_VIDEOS_SUCCESS = "app/SEARCH_VIDEOS_SUCCESS";
+
+export const LOAD_VIDEO = "app/LOAD_VIDEO";
+export const LOAD_VIDEO_SUCCESS = "app/LOAD_VIDEO_SUCCESS";
+
+export const UPDATE_VIDEO = "app/UPDATE_VIDEO";
+export const UPDATE_VIDEO_SUCCESS = "app/UPDATE_VIDEO_SUCCESS";
+
+export const CLEAR_CURRENT_VIDEO = "app/CLEAR_CURRENT_VIDEO";
+
+export const UPDATE_VIDEO_FILTERS = "app/UPDATE_VIDEO_FILTERS";
+export const RESET_VIDEO_FILTERS = "app/RESET_VIDEO_FILTERS";
+
+export const UPDATE_VIDEO_COLLECTION_SETTINGS = "app/UPDATE_VIDEO_COLLECTION_SETTINGS";
+
+export const LOAD_MORE_VIDEOS = "app/LOAD_MORE_VIDEOS";
+export const LOAD_MORE_VIDEOS_SUCCESS = "app/LOAD_MORE_VIDEOS_SUCCESS";
+
+export const UPDATE_TOTAL_VIDEOS_PIXELS = "app/UPDATE_TOTAL_VIDEOS_PIXELS";
+export const UPDATE_TOTAL_SCROLLED_VIDEOS_PIXELS = "app/UPDATE_TOTAL_SCROLLED_VIDEOS_PIXELS";
+
+
 // =============================================================================
 
 // Proxies

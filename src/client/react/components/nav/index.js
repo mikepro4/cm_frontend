@@ -53,6 +53,7 @@ class Nav extends Component {
 			{
 				url: "/library/videos",
 				name: "Videos",
+				collectionName: "videos"
 			},
 			{
 				url: "/library/groups",

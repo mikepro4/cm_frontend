@@ -5,6 +5,7 @@ import { appReducer } from "./appReducer";
 import { authReducer } from "./authReducer";
 import { connectRouter } from "connected-react-router";
 import { tickersReducer } from "./library/tickersReducer";
+import { videosReducer } from "./library/videosReducer";
 import { proxiesReducer } from "./library/proxiesReducer";
 import { modalsReducer } from "./modalsReducer";
 import { scrapingSearchResults } from "./scraping/searchResultsReducer";
@@ -16,6 +17,7 @@ export default (history) => combineReducers({
 	auth: authReducer,
 	modals: modalsReducer,
 	tickersLibrary: tickersReducer,
+	videosLibrary: videosReducer,
 	proxiesLibrary: proxiesReducer,
 	scrapingSearchResults: scrapingSearchResults
 })

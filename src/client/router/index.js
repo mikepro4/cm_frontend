@@ -12,6 +12,7 @@ import TickersLibrary from "../react/pages/library/tickers"
 import Ticker from "../react/pages/library/tickers/Item"
 import ProxiesLibrary from "../react/pages/library/proxies"
 import Proxypage from "../react/pages/library/proxies/Item"
+import VideosLibrary from "../react/pages/library/videos"
 import ScrapingSearchResults from "../react/pages/scraping/search_results"
 
 export default [
@@ -81,7 +82,15 @@ export default [
 				},
 
 			},
+			{
+				...VideosLibrary,
+				path: "/library/videos",
+				exact: true,
+				params: {
+					name: "videos_library"
+				},
 
+			},
 			{
 				...Proxypage,
 				path: "/library/proxies/:proxyId",
@@ -108,6 +117,7 @@ export default [
 				},
 
 			},
+			
 		]
 	}
 ];
