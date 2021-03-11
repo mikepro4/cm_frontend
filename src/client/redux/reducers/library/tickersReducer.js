@@ -32,8 +32,8 @@ import {
             value: -1,
         },
         sortProperty: {
-            label: "Date Created",
-            value: "createdAt"
+            label: "Last 24 hours",
+            value: "last24hours"
         },
         offset: 0,
         limit: 20

@@ -24,16 +24,20 @@ class Content extends Component {
 					updateCollectionSettings={(item, prop) => this.props.updateTickerCollectionSettings(item, prop)}
 					sortProperties={[
 						{
+							value: "last24hours",
+							label: "Last 24 hours"
+						},
+						{
+							value: "last48hours",
+							label: "Last 48 hours"
+						},
+						{
 							value: "createdAt",
 							label: "Date Created"
 						},
 						{
 							value: "symbol",
 							label: "Symbol"
-						},
-						{
-							value: "name",
-							label: "Company name"
 						}
 					]}
 				/>
