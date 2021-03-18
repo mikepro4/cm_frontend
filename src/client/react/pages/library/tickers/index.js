@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
-import { Icon, Button, Position, Toaster, Classes, Intent, Spinner, Tab, Tabs } from "@blueprintjs/core";
+import { Icon, Button, Position, Toaster, Classes, Intent, Spinner } from "@blueprintjs/core";
 
 import qs from "qs";
 import { updateQueryString } from "../../../../redux/actions/appActions";
 
 import Header from "./../../../components/header"
+import TabBar from "./../../../components/tab_bar"
 
 class TickersLibrary extends Component {
 	state = {
@@ -21,10 +22,12 @@ class TickersLibrary extends Component {
     )
 
     componentDidUpdate = (prevProps, prevState) => {
-		if (prevState.selectedTabId !== this.getQueryParams().selectedTabId) {
-			this.setState({
-				selectedTabId: this.getQueryParams().selectedTabId
-			});
+		if (this.props.location.search) {
+			if (prevState.selectedTabId !== this.getQueryParams().selectedTabId) {
+				this.setState({
+					selectedTabId: this.getQueryParams().selectedTabId
+				});
+			}
 		}
     };
     
@@ -54,6 +57,29 @@ class TickersLibrary extends Component {
 		);
 	};
 
+	renderTab = () => {
+		switch (this.state.selectedTabId) {
+			case "1":
+				return(
+                        <div className="placeholder"></div>
+				)
+			case "2":
+				return(
+					<div className="placeholder">2</div>
+				)
+			case "3":
+				return(
+					<div className="placeholder">3</div>
+				)
+			case "4":
+				return(
+					<div className="placeholder">4</div>
+				)
+			default:
+				return ;
+		}
+	}
+
 	render() {
 		if(this.props.authenticated) {
 			return (
@@ -65,27 +91,23 @@ class TickersLibrary extends Component {
                         <Header 
                             title="Tickers"
                         />
+
+						<TabBar
+							tabs={[
+								"All Tickers",
+								"Top 100",
+								"Add New",
+								"Import"
+							]}
+							activeTab={this.state.selectedTabId}
+							onTabChange={(tab) => this.handleTabChange(tab)}
+						/>
+
                     </div>
-                    
 
-                    {/* <Tabs
-                        id="Tabs2Example"
-                        onChange={this.handleTabChange}
-                        selectedTabId={this.state.selectedTabId}
-                        large={true}
-                    >
-                        <Tab id="1" title="Status" panel={
-                            } 
-                        />
-
-                        <Tab id="2" title="Cycle history" panel={<div>Cycle history</div>} />
-                        <Tab id="3" title="Proxy log" panel={<div>Proxy log</div>} />
-                    </Tabs> */}
-
-                    <div className="route-content-container">
-                        <div className="placeholder"></div>
-                    </div>
-	
+					<div className="route-content-container">
+						{this.renderTab()}
+					</div>
 					
 				</div>
 			);

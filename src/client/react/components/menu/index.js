@@ -59,6 +59,23 @@ class Menu extends Component {
 					</div>
 
                     <Nav/>
+
+                    <div 
+						className="user-email"
+					>
+						<div 
+							className={classNames({
+									"email": true,
+									"bp3-skeleton": !this.props.app.user
+								})
+							}
+						>
+							{this.props.app.user && this.props.app.user.email}
+						</div>
+
+						<Link to="/auth/signout" className="signout">Sign out</Link>
+
+					</div>
                 </div>
             </div>
         )
@@ -67,7 +84,9 @@ class Menu extends Component {
 
 function mapStateToProps(state) {
 	return {
-        menuOpen: state.app.menuOpen
+        menuOpen: state.app.menuOpen,
+        authenticated: state.auth.authenticated,
+		app: state.app
 	};
 }
 

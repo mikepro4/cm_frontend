@@ -13,7 +13,7 @@
     }
 
 	.route-header {
-		height: 44px;
+		height: 50px;
 		display: flex;
 		flex-grow: 0;
 		flex-shrink: 0;
@@ -235,7 +235,7 @@
     .menu-links-container {
         background: $white;
         width: 250px;
-        padding: 0 10px 0 0;
+        padding: 0 0 0 0;
         overflow-y: scroll;
         z-index: 2;
         position: fixed;
@@ -277,6 +277,71 @@
     .bp3-button {
         position: relative;
         top: -3px;
-        right: -15px;
+        right: -5px;
     }
 }
+
+.tab-container {
+	ul.tab-list {
+		display: flex;
+		width: 100%;
+		overflow-x: scroll;
+		padding: 0 25px 15px 17px;
+
+		li.tab-link-container {
+			margin: 0 20px 0 0;
+
+			.tab-link-wrapper {
+				transition: 0.2s all;
+				padding: 5px 0 5px 0;
+				font-weight: 500;
+				color: $gray3;
+				font-size: 14px;
+				border-radius: 3px;
+				letter-spacing: 0.34;
+
+				span {
+					position: relative;
+					top: -1px;
+					white-space: nowrap;
+					user-select: none;
+				}
+
+				&:hover {
+					color: $black;
+					cursor: pointer;
+				}
+			}
+
+			&.tab-link-active {
+
+				.tab-link-wrapper {
+					padding: 5px 10px 5px 10px;
+					color: $white;
+					background: $blue4;
+				}
+			}
+
+			&:last-child {
+				padding-right: 50px !important;
+			}
+		}
+	}
+}
+
+.user-email {
+		flex-grow: 0;
+		flex-shrink: 0;
+		height: 80px;
+		width: 100%;
+		border-top: 1px solid $light-gray4;
+
+		.email {
+			width: 180px;
+			height: 20px;
+			margin: 20px 0 0 20px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+	}
