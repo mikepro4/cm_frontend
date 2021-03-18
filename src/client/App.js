@@ -9,6 +9,7 @@ import classNames from "classnames";
 import socketIOClient from "socket.io-client";
 
 import Nav from './react/components/nav/'
+import Menu from "./react/components/menu"
 
 import { FocusStyleManager } from "@blueprintjs/core";
 
@@ -52,7 +53,7 @@ class App extends Component {
 		return (
 			<div className="app">
 
-				{this.props.authenticated && <div className="app-sidebar">
+				{/* {this.props.authenticated && <div className="app-sidebar">
 					<div className="app-logo">
 						<Logo />
 					</div>
@@ -76,7 +77,9 @@ class App extends Component {
 					</div>
 					
 
-				</div>}
+				</div>} */}
+
+				<Menu/>
 				
 
 				<div className="app-route-container">

@@ -60,11 +60,6 @@ class Nav extends Component {
 				url: "/library/groups",
 				name: "Groups",
 				collectionName: "groups"
-			},
-			{
-				url: "/library/users",
-				name: "Users",
-				protected: true
 			}
 		]
 
@@ -72,18 +67,11 @@ class Nav extends Component {
 			{
 				url: "/scraping/search_results",
 				name: "Search Results",
-			},
-			{
-				url: "/scraping/proxies",
-				name: "Proxies",
 			}
 		]
 
 		return (
 			<div className="nav-container">
-                <NavGroup
-                    links={mainLinks}
-                />
 
                 <NavGroup
                     name="Inbox"

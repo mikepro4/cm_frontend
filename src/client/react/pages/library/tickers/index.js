@@ -1,80 +1,92 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
-import { Icon, Button, Position, Toaster, Classes, Intent, Spinner } from "@blueprintjs/core";
+import { Icon, Button, Position, Toaster, Classes, Intent, Spinner, Tab, Tabs } from "@blueprintjs/core";
 
-import {
-	createTicker
-} from '../../../../redux/actions/library/tickersActions'
+import qs from "qs";
+import { updateQueryString } from "../../../../redux/actions/appActions";
 
-import {
-	showTickerNewModal
-} from '../../../../redux/actions/modalActions'
-
-import TickerNewModal from "./TickerNewModal"
-
-import Content from './Content'
-import Sidebar from './Sidebar'
+import Header from "./../../../components/header"
 
 class TickersLibrary extends Component {
 	state = {
+        selectedTabId: "1"
 	};
-
-	createTicker = () => {
-		
-		// this.props.createTicker({
-		// 	symbol: "AAPL",
-		// 	name: "Apple"
-		// }, (data) => {
-		// 	// this.props.history.push(`/manager/tickers/${data._id}`);
-		// 	this.createTickerToast()
-		// })
-	}
-
-	createTickerToast = () => {
-		this.refs.toaster.show({
-			message: "Ticker successully created",
-			intent: Intent.PRIMARY
-		});
-	}
 
 	renderHead = () => (
 		<Helmet>
-			<title>Tickers Page</title>
+			<title>Tickers – Cash Machine</title>
 			<meta property="og:title" content="Homepage" />
 		</Helmet>
-	)
+    )
+
+    componentDidUpdate = (prevProps, prevState) => {
+		if (prevState.selectedTabId !== this.getQueryParams().selectedTabId) {
+			this.setState({
+				selectedTabId: this.getQueryParams().selectedTabId
+			});
+		}
+    };
+    
+    getQueryParams = () => {
+		return qs.parse(this.props.location.search.substring(1));
+    };
+
+    componentDidMount = () => {
+		if (this.props.location.search) {
+			let queryParams = this.getQueryParams();
+			this.setState({
+				selectedTabId: queryParams.selectedTabId
+			});
+		}
+	};
+
+    
+    handleTabChange = value => {
+		this.setState({
+			selectedTabId: value
+		});
+
+		this.props.updateQueryString(
+			{ selectedTabId: value },
+			this.props.location,
+			this.props.history
+		);
+	};
 
 	render() {
 		if(this.props.authenticated) {
 			return (
 				<div className="route-container route-tickers">
+                    {this.renderHead()}
 					<Toaster position={Position.BOTTOM_RIGHT} ref="toaster" />
-					<div className="route-header">
-						<div className="route-header-left">
-							<div className="route-title">Tickers</div>
-						</div>
-	
-						<div className="route-header-right">
-							<ul className="route-actions">
-								<li>
-									<Button
-										icon="add"
-										intent="primary"
-										text="Add new ticker"
-										onClick={() => this.props.showTickerNewModal()}
-									/>
-								</li>
-							</ul>
-						</div>
-					</div>
-	
-					<div className="route-content-container">
-						<Content />
-						<Sidebar />
-					</div>
 
-					<TickerNewModal/>
+                    <div className="route-header-container">
+                        <Header 
+                            title="Tickers"
+                        />
+                    </div>
+                    
+
+                    {/* <Tabs
+                        id="Tabs2Example"
+                        onChange={this.handleTabChange}
+                        selectedTabId={this.state.selectedTabId}
+                        large={true}
+                    >
+                        <Tab id="1" title="Status" panel={
+                            } 
+                        />
+
+                        <Tab id="2" title="Cycle history" panel={<div>Cycle history</div>} />
+                        <Tab id="3" title="Proxy log" panel={<div>Proxy log</div>} />
+                    </Tabs> */}
+
+                    <div className="route-content-container">
+                        <div className="placeholder"></div>
+                    </div>
+	
+					
 				</div>
 			);
 		} else {
@@ -92,7 +104,6 @@ function mapStateToProps(state) {
 
 export default {
 	component: connect(mapStateToProps, {
-		createTicker,
-		showTickerNewModal
+        updateQueryString
 	})(TickersLibrary)
 }

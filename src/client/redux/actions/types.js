@@ -16,6 +16,9 @@ export const AUTH_CLEAR = "app/AUTH_CLEAR"
 
 export const UPDATE_COLLECTION_STATS = "app/UPDATE_COLLECTION_STATS"
 
+export const SHOW_APP_MENU = "app/SHOW_APP_MENU"
+export const HIDE_APP_MENU = "app/HIDE_APP_MENU"
+
 // =============================================================================
 
 // Modals

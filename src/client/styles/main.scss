@@ -20,6 +20,8 @@
 @import "../react/components/list/list_results";
 @import "../react/components/scraping_controls/scrapingControls";
 
+@import "./app.scss";
+
 //Pages
 @import "../react/pages/auth/auth";
 @import "../react/pages/scraping/search_results/tabStatus";
@@ -124,12 +126,7 @@ a {
 		
 	}
 
-	.app-logo {
-		margin: 30px 20px;
-		flex-grow: 0;
-		flex-shrink: 0;
-		display: flex;
-	}
+	
 	
 	.signout {
 		margin: 20px;
@@ -201,150 +198,7 @@ a {
 	}
 }
 
-.route-container {
-	display: flex;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	flex-direction: column;
 
-	.route-header {
-		height: 70px;
-		border-bottom: $lightBorder;
-		display: flex;
-		flex-grow: 0;
-		flex-shrink: 0;
-		justify-content: space-between;
-		padding: 0 15px;
-		align-items: center;
-		background: $white;
-
-		.route-header-left {
-			display: flex;
-
-			.bp3-button {
-				margin: 0 20px 0 0;
-			}
-		}
-
-		.route-title {
-			font-size: 34px;
-			font-weight: 600;
-			letter-spacing: 1px;
-			position: relative;
-			top: -3px;
-		}
-
-		.route-actions {
-			display: flex;
-
-			li {
-				margin: 0 0 0 10px;
-			}
-		}
-	}
-
-	.route-content-container {
-		flex-grow: 1;
-		flex-shrink: 1;
-		position: relative;
-		display: flex;
-		overflow-y: scroll;
-
-		.route-sidebar {
-			width: 350px;
-			flex-grow: 0;
-			flex-shrink: 0;
-			border-left: $lightBorder;
-			background: $white;
-			display: flex;
-			flex-direction: column;
-
-			&.route-sidebar-right {
-				border-left: $lightBorder; 
-				border-right: none;
-			}
-
-			.route-sidebar-header {
-				display: flex;
-				justify-content: space-between;
-				border-bottom: $lightBorder;
-				height: 50px; 
-				flex-grow: 0;
-				flex-shrink: 0;
-				align-items: center;
-				padding: 0 15px;
-
-				.route-sidebar-header-section {
-					position: relative;
-					top: -1px;
-
-					.route-sidebar-header-title {
-						font-size: 12px;
-						text-transform: uppercase;
-						letter-spacing: 0.8px;
-						font-weight: bold;
-					}
-
-					.bp3-button {
-						margin: 0 0 0 5px
-					}
-				}
-			}
-
-			.route-sidebar-content {
-				display: flex;
-				flex-grow: 1;
-				flex-shrink: 1;
-				padding: 15px;
-				overflow-y: auto;
-
-				.item-filters-form {
-					width: 100%;
-				}
-
-				.input-group {
-					flex-direction: column;
-
-					.input-label {
-						margin: 0 0 5px 0;
-						letter-spacing: 0.5px;
-					}
-				}
-
-				.input-group .input-group-right .input-error {
-					top: -20px;
-					right: 0;
-					left: inherit;
-				}
-			}
-		}
-
-		.route-content {
-			flex-grow: 1;
-			flex-shrink: 1;
-			display: flex;
-			flex-direction: column;
-		}
-	}
-
-	&.route-details {
-		background: $light-gray5;
-	}
-}
-
-.spinner-container {
-	display: flex;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	justify-content: center;
-	align-items: center;
-}
 
 .dialog-content {
 	margin: 20px;
@@ -374,31 +228,5 @@ a {
 	span {
 		color: $black;
 		font-weight: 400;
-	}
-}
-
-.bp3-tabs {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-
-	.bp3-tab {
-		position: relative;
-		top: 1px;
-	}
-
-	.bp3-tab-list  {
-		flex-grow: 0;
-		flex-shrink: 0;
-		padding: 0 20px 0 20px;
-		border-bottom: $lightBorder;
-	}
-
-	.bp3-tab-panel {
-		flex-grow: 1;
-		flex-shrink: 1;
-		margin-top: 0;
-		overflow-y: scroll;
 	}
 }
