@@ -55,4 +55,26 @@
 	.bp3-input-group {
 		width: 100%
 	}
+
+	&.minimal {
+		margin: 0;
+
+		input.bp3-input {
+			border: none;
+			box-shadow: none;
+			font-size: 12px;
+			width: 100%;
+			padding-left: 25px;
+		}
+
+		.bp3-icon {
+
+			svg {
+				position: relative;
+				left: 0px;
+				top: -1px;
+				width: 12px;
+			}
+		}
+	}
 }

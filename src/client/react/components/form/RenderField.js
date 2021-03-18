@@ -23,7 +23,8 @@ class RenderField extends Component {
 						icon={property.icon}
 						large={property.large}
 						small={property.small}
-                        autoFocus={property.autoFocus}
+						autoFocus={property.autoFocus}
+						minimal={property.minimal}
 					/>
 				);
 			case "protected":

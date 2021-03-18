@@ -8,11 +8,29 @@ import { updateQueryString } from "../../../../redux/actions/appActions";
 
 import Header from "./../../../components/header"
 import TabBar from "./../../../components/tab_bar"
+import OptionsBar from "./../../../components/options_bar"
+
+import { resetForm } from "../../../../redux/actions/formActions"
 
 class TickersLibrary extends Component {
 	state = {
-        selectedTabId: "1"
+		selectedTabId: "1",
+		tabs: [
+			"All Tickers",
+			"Top 100",
+			"Add New",
+			"Import"
+		]
 	};
+
+	resetOptionsBar() {
+		this.setState({
+			filterOpen: false,
+			sortOpen: false,
+			viewOpen: false
+		})
+		this.props.resetForm("queryForm")
+	}
 
 	renderHead = () => (
 		<Helmet>
@@ -36,6 +54,9 @@ class TickersLibrary extends Component {
     };
 
     componentDidMount = () => {
+
+		this.resetOptionsBar()
+
 		if (this.props.location.search) {
 			let queryParams = this.getQueryParams();
 			this.setState({
@@ -43,7 +64,6 @@ class TickersLibrary extends Component {
 			});
 		}
 	};
-
     
     handleTabChange = value => {
 		this.setState({
@@ -61,7 +81,7 @@ class TickersLibrary extends Component {
 		switch (this.state.selectedTabId) {
 			case "1":
 				return(
-                        <div className="placeholder"></div>
+					<div className="placeholder">1</div>
 				)
 			case "2":
 				return(
@@ -80,6 +100,46 @@ class TickersLibrary extends Component {
 		}
 	}
 
+	renderOptionsBar = () => {
+		switch (this.state.selectedTabId) {
+			case "1":
+				return(
+                        <OptionsBar
+							propertyName="symbol"
+							filterOpen={this.state.filterOpen}
+							sortOpen={this.state.sortOpen}
+							viewOpen={this.state.viewOpen}
+							query={this.state.query}
+							filterOn={true}
+							sortOn={true}
+							viewOn={true}
+							onFilterClick={() => this.setState({
+								filterOpen: !this.state.filterOpen
+							})}
+							onSortClick={() => this.setState({
+								filterOpen: !this.state.sortOpen
+							})}
+							onViewClick={() => this.setState({
+								filterOpen: !this.state.viewOpen
+							})}
+							onChange={(value) => console.log(value)}
+							onSubmit={(value) => console.log(value)}
+						/>
+				)
+			default:
+				return ;
+		}
+	}
+
+	renderSelectedOtionContent = () => {
+		switch (this.state.selectedTabId) {
+			case "1":
+				return (<div>test</div>)
+			default:
+				return ;
+		}
+	}
+
 	render() {
 		if(this.props.authenticated) {
 			return (
@@ -93,15 +153,12 @@ class TickersLibrary extends Component {
                         />
 
 						<TabBar
-							tabs={[
-								"All Tickers",
-								"Top 100",
-								"Add New",
-								"Import"
-							]}
+							tabs={this.state.tabs}
 							activeTab={this.state.selectedTabId}
 							onTabChange={(tab) => this.handleTabChange(tab)}
 						/>
+
+						{this.renderOptionsBar()}
 
                     </div>
 
@@ -126,6 +183,7 @@ function mapStateToProps(state) {
 
 export default {
 	component: connect(mapStateToProps, {
-        updateQueryString
+		updateQueryString,
+		resetForm
 	})(TickersLibrary)
 }
