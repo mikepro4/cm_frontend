@@ -22,6 +22,9 @@ export const HIDE_APP_MENU = "app/HIDE_APP_MENU"
 export const SHOW_APP_DRAWER = "app/SHOW_APP_DRAWER"
 export const HIDE_APP_DRAWER = "app/HIDE_APP_DRAWER"
 
+export const SHOW_APP_SHELF = "app/SHOW_APP_SHELF"
+export const HIDE_APP_SHELF = "app/HIDE_APP_SHELF"
+
 // =============================================================================
 
 // Modals

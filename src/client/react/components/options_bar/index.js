@@ -79,7 +79,7 @@ class OptionsBar extends Component {
                                     small="true"
                                     onClick={() =>  {
                                             this.props.onFilterClick()
-                                                this.toggleDrawer()
+                                            this.toggleDrawer()
                                         }
                                     }
                                 />
@@ -94,7 +94,7 @@ class OptionsBar extends Component {
                                     small="true"
                                     onClick={() =>  {
                                         this.props.onSortClick()
-                                            this.toggleDrawer()
+                                        this.toggleDrawer()
                                     }
                                 }
                                 />
@@ -109,7 +109,7 @@ class OptionsBar extends Component {
                                     small="true"
                                     onClick={() =>  {
                                         this.props.onViewClick()
-                                            this.toggleDrawer()
+                                        this.toggleDrawer()
                                     }}
                                 />
                             </li>

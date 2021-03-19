@@ -8,14 +8,18 @@ import {
 	SHOW_APP_MENU,
 	HIDE_APP_MENU,
 	SHOW_APP_DRAWER,
-	HIDE_APP_DRAWER
+	HIDE_APP_DRAWER,
+	SHOW_APP_SHELF,
+	HIDE_APP_SHELF
 } from "../actions/types";
 
 export const initialState = {
 	user: null,
 	collectionCounts: {},
 	menuOpen: false,
-	drawerOpen: false
+	drawerOpen: false,
+	shelfOpen: false,
+	shelfContent: null
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -54,6 +58,18 @@ export const appReducer = (state = initialState, action) => {
 			return {
 				...state,
 				drawerOpen: false
+			}
+		case SHOW_APP_SHELF:
+			return {
+				...state,
+				shelfOpen: true,
+				shelfContent: action.payload
+			}
+		case HIDE_APP_SHELF:
+			return {
+				...state,
+				shelfOpen: false,
+				shelfContent: null
 			}
 		default:
 			return state;

@@ -3,7 +3,9 @@ import {
 	SHOW_APP_MENU,
 	HIDE_APP_MENU,
 	SHOW_APP_DRAWER,
-	HIDE_APP_DRAWER
+	HIDE_APP_DRAWER,
+	SHOW_APP_SHELF,
+	HIDE_APP_SHELF
 } from "../actions/types";
 
 import moment from "moment";
@@ -108,4 +110,28 @@ export const hideDrawer = (success) => async (
 	if (success) {
 		success();
 	}
+};
+
+/////////////////////////////////////////////////
+
+
+export const showShelf = (shelfContent) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    dispatch({
+		type: SHOW_APP_SHELF,
+		payload: shelfContent
+    });
+};
+
+export const hideShelf = (success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    dispatch({
+        type: HIDE_APP_SHELF
+    });
 };

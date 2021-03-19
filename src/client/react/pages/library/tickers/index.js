@@ -191,8 +191,10 @@ class TickersLibrary extends Component {
 					<Toaster position={Position.BOTTOM_RIGHT} ref="toaster" />
 
                     <div className="route-header-container" id="header">
+
                         <Header 
-                            title="Tickers"
+							title="Tickers"
+							onShelfOpen={() => this.resetOptionsBar()}
                         />
 
 						<TabBar

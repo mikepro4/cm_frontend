@@ -6,41 +6,56 @@ import { Icon, Button, Classes, Intent  } from "@blueprintjs/core";
 
 import {
     showMenu,
-    hideMenu
+    hideMenu,
+    showShelf
 } from '../../../redux/actions/appActions'
+
+import Shelf from "../shelf"
 
 class Header extends Component {
 
 	render() {
 
 		return (
-            <div className="route-header">
-                <div className="route-header-left">
-                    <Button 
-                        minimal="true"
-                        icon="menu"
-                        onClick={() => this.props.showMenu()}
-                    />
-                    <div className="route-title">{this.props.title}</div>
-                </div>
+            <div>
+                <Shelf/>
 
-                <div className="route-header-right">
-                    <ul className="route-actions">
-                        <li>
-                            <Button 
-                                minimal="true"
-                                icon="notifications"
-                                text="2"
-                            />
-                        </li>
+                <div className="route-header">
+                    <div className="route-header-left">
+                        <Button 
+                            minimal="true"
+                            icon="menu"
+                            onClick={() => this.props.showMenu()}
+                        />
+                        <div className="route-title">{this.props.title}</div>
+                    </div>
 
-                        <li>
-                            <Button 
-                                minimal="true"
-                                icon="search"
-                            />
-                        </li>
-                    </ul>
+                    <div className="route-header-right">
+                        <ul className="route-actions">
+                            <li>
+                                <Button 
+                                    minimal="true"
+                                    icon="notifications"
+                                    text="2"
+                                    onClick={() =>  {
+                                        this.props.onShelfOpen()
+                                        this.props.showShelf("notifications")}
+                                    }
+                                />
+                            </li>
+
+                            <li>
+                                <Button 
+                                    minimal="true"
+                                    icon="search"
+                                    onClick={() =>  {
+                                        this.props.onShelfOpen()
+                                        this.props.showShelf("search")}
+                                    }
+                                />
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -55,5 +70,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
     showMenu,
-    hideMenu
+    hideMenu,
+    showShelf
 })(Header);
