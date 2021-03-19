@@ -6,6 +6,10 @@ import { Icon, Button, Classes, Intent  } from "@blueprintjs/core";
 
 import { resetForm } from "../../../redux/actions/formActions"
 
+import { showDrawer, hideDrawer } from "../../../redux/actions/appActions"
+
+
+
 import QueryForm from "./query_form"
 
 class OptionsBar extends Component {
@@ -14,6 +18,13 @@ class OptionsBar extends Component {
 
     componentWillUnmount() {
         this.props.resetForm("queryForm")
+    }
+
+    toggleDrawer() {
+        // this.props.app.drawerOpen ? this.props.hideDrawer() : this.props.showDrawer()
+        if(!this.props.app.drawerOpen) {
+            this.props.showDrawer()
+        }
     }
 
 	render() {
@@ -66,6 +77,11 @@ class OptionsBar extends Component {
                                     minimal="true"
                                     text="Filter"
                                     small="true"
+                                    onClick={() =>  {
+                                            this.props.onFilterClick()
+                                                this.toggleDrawer()
+                                        }
+                                    }
                                 />
                             </li>
                         )}
@@ -76,6 +92,11 @@ class OptionsBar extends Component {
                                     minimal="true"
                                     text="Sort"
                                     small="true"
+                                    onClick={() =>  {
+                                        this.props.onSortClick()
+                                            this.toggleDrawer()
+                                    }
+                                }
                                 />
                             </li>
                         )}
@@ -86,6 +107,10 @@ class OptionsBar extends Component {
                                     minimal="true"
                                     text="View"
                                     small="true"
+                                    onClick={() =>  {
+                                        this.props.onViewClick()
+                                            this.toggleDrawer()
+                                    }}
                                 />
                             </li>
                         )}
@@ -104,5 +129,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-    resetForm
+    resetForm,
+    showDrawer,
+    hideDrawer
 })(OptionsBar);

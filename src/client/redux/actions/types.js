@@ -19,6 +19,9 @@ export const UPDATE_COLLECTION_STATS = "app/UPDATE_COLLECTION_STATS"
 export const SHOW_APP_MENU = "app/SHOW_APP_MENU"
 export const HIDE_APP_MENU = "app/HIDE_APP_MENU"
 
+export const SHOW_APP_DRAWER = "app/SHOW_APP_DRAWER"
+export const HIDE_APP_DRAWER = "app/HIDE_APP_DRAWER"
+
 // =============================================================================
 
 // Modals

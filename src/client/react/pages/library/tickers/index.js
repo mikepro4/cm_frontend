@@ -9,8 +9,11 @@ import { updateQueryString } from "../../../../redux/actions/appActions";
 import Header from "./../../../components/header"
 import TabBar from "./../../../components/tab_bar"
 import OptionsBar from "./../../../components/options_bar"
+import Drawer from "./../../../components/drawer"
 
 import { resetForm } from "../../../../redux/actions/formActions"
+
+import { hideDrawer } from "../../../../redux/actions/appActions"
 
 class TickersLibrary extends Component {
 	state = {
@@ -18,6 +21,7 @@ class TickersLibrary extends Component {
 		tabs: [
 			"All Tickers",
 			"Top 100",
+			"New activity",
 			"Add New",
 			"Import"
 		]
@@ -30,6 +34,7 @@ class TickersLibrary extends Component {
 			viewOpen: false
 		})
 		this.props.resetForm("queryForm")
+		this.props.hideDrawer()
 	}
 
 	renderHead = () => (
@@ -75,6 +80,8 @@ class TickersLibrary extends Component {
 			this.props.location,
 			this.props.history
 		);
+
+		this.resetOptionsBar()
 	};
 
 	renderTab = () => {
@@ -104,27 +111,56 @@ class TickersLibrary extends Component {
 		switch (this.state.selectedTabId) {
 			case "1":
 				return(
-                        <OptionsBar
-							propertyName="symbol"
-							filterOpen={this.state.filterOpen}
-							sortOpen={this.state.sortOpen}
-							viewOpen={this.state.viewOpen}
-							query={this.state.query}
-							filterOn={true}
-							sortOn={true}
-							viewOn={true}
-							onFilterClick={() => this.setState({
-								filterOpen: !this.state.filterOpen
-							})}
-							onSortClick={() => this.setState({
-								filterOpen: !this.state.sortOpen
-							})}
-							onViewClick={() => this.setState({
-								filterOpen: !this.state.viewOpen
-							})}
-							onChange={(value) => console.log(value)}
-							onSubmit={(value) => console.log(value)}
-						/>
+					<OptionsBar
+						propertyName="symbol"
+						filterOpen={this.state.filterOpen}
+						sortOpen={this.state.sortOpen}
+						viewOpen={this.state.viewOpen}
+						query={this.state.query}
+						filterOn={true}
+						sortOn={true}
+						viewOn={true}
+						onFilterClick={() =>  {
+								if(this.state.filterOpen) {
+									this.resetOptionsBar()
+								} else {
+									this.setState({
+										filterOpen: true,
+										sortOpen: false,
+										viewOpen: false
+									})
+								}
+							}
+						}
+
+						onSortClick={() =>  {
+								if(this.state.sortOpen) {
+									this.resetOptionsBar()
+								} else {
+									this.setState({
+										filterOpen: false,
+										sortOpen: true,
+										viewOpen: false
+									})
+								}
+							}
+						}
+
+						onViewClick={() =>  {
+								if(this.state.viewOpen) {
+									this.resetOptionsBar()
+								} else {
+									this.setState({
+										filterOpen: false,
+										sortOpen: false,
+										viewOpen: true
+									})
+								}
+							}
+						}
+						onChange={(value) => console.log(value)}
+						onSubmit={(value) => console.log(value)}
+					/>
 				)
 			default:
 				return ;
@@ -132,22 +168,29 @@ class TickersLibrary extends Component {
 	}
 
 	renderSelectedOtionContent = () => {
-		switch (this.state.selectedTabId) {
-			case "1":
-				return (<div>test</div>)
-			default:
-				return ;
+
+		if(this.state.filterOpen) {
+			return(<div className="filter-drawer" id="drawer">Filters</div>)
+		}
+
+		if(this.state.sortOpen) {
+			return(<div className="sort-drawer" id="drawer">Sort</div>)
+		}
+		if(this.state.viewOpen) {
+			return(<div className="view-drawer" id="drawer">View</div>)
 		}
 	}
 
 	render() {
+		
 		if(this.props.authenticated) {
+
 			return (
 				<div className="route-container route-tickers">
                     {this.renderHead()}
 					<Toaster position={Position.BOTTOM_RIGHT} ref="toaster" />
 
-                    <div className="route-header-container">
+                    <div className="route-header-container" id="header">
                         <Header 
                             title="Tickers"
                         />
@@ -164,6 +207,13 @@ class TickersLibrary extends Component {
 
 					<div className="route-content-container">
 						{this.renderTab()}
+
+						<Drawer
+							onCLose={() => this.resetOptionsBar()}
+						>
+							{this.renderSelectedOtionContent()}
+						</Drawer>
+						
 					</div>
 					
 				</div>
@@ -184,6 +234,7 @@ function mapStateToProps(state) {
 export default {
 	component: connect(mapStateToProps, {
 		updateQueryString,
-		resetForm
+		resetForm,
+		hideDrawer
 	})(TickersLibrary)
 }

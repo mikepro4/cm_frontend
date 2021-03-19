@@ -135,7 +135,7 @@ export const signoutUser = (success) => async (
 
 /////////////////////////////////////////////////
 
-export const getUser = () => async (
+export const getUser = (good, bad) => async (
     dispatch,
 	getState,
 	api
@@ -144,7 +144,7 @@ export const getUser = () => async (
     api
         .get("/user_details")
 		.then(response => {
-			console.log(response.data)
+            console.log(response.data)
 		})
 		.catch(() => {
             console.log("gail")

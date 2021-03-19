@@ -1,7 +1,9 @@
 import {
 	UPDATE_COLLECTION_STATS,
 	SHOW_APP_MENU,
-	HIDE_APP_MENU
+	HIDE_APP_MENU,
+	SHOW_APP_DRAWER,
+	HIDE_APP_DRAWER
 } from "../actions/types";
 
 import moment from "moment";
@@ -70,6 +72,37 @@ export const hideMenu = (success) => async (
 ) => {
     dispatch({
         type: HIDE_APP_MENU,
+    });
+
+	if (success) {
+		success();
+	}
+};
+
+/////////////////////////////////////////////////
+
+
+export const showDrawer = (success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    dispatch({
+        type: SHOW_APP_DRAWER,
+    });
+
+	if (success) {
+		success();
+	}
+};
+
+export const hideDrawer = (success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    dispatch({
+        type: HIDE_APP_DRAWER,
     });
 
 	if (success) {

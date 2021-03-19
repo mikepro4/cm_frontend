@@ -46,7 +46,14 @@ class App extends Component {
 			this.props.updateVideosSearchResults(data)
 		})
 
+		if(token) {
+			this.props.history.push("/library/tickers")
+		} else {
+			this.props.history.push("/auth/signin")
+		}
+
 	}
+
 
 	render() {
 		
