@@ -5,6 +5,9 @@ import classNames from "classnames"
 import moment from 'moment'
 import { Button } from "@blueprintjs/core";
 
+import DefaultView from "./views/Default"
+import TickerCard from "./views/TickerCard"
+
 class ListResults extends Component {
 
 	componentDidMount() {
@@ -97,39 +100,67 @@ class ListResults extends Component {
 		)
 	}
 
+	renderDefault = (item) => {
+		return (
+			<div className="list-result-item" key={item._id + Math.random()}>
+				<Link to={`${this.props.itemUrl}/${item._id}`}>
+
+					<div className="list-result-item-top">
+						<div className="list-result-item-top-left">
+							{this.renderMainProps(item)}
+						</div>
+
+						<div className="list-result-item-top-right">
+								<div className="created-date">
+									Created {moment(item.createdAt).fromNow()}
+								</div>
+								<Button
+									rightIcon="arrow-right"
+									minimal="true"
+									large="true"
+									text="View item"
+								/>
+						</div>
+
+					</div>
+
+
+				</Link>
+			</div>
+		)
+	}
+
+	renderResultItem = (item) => {
+		switch (this.props.resultType) {
+			case "tickers_card":
+				return(
+					<TickerCard
+						item={item}
+						key={item._id}
+						itemUrl={this.props.itemUrl}
+						mainDisplayPropSmall={this.props.mainDisplayPropSmall}
+						mainDisplayPropBig={this.props.mainDisplayPropBig}
+					/>
+				)
+			default:
+				return(
+					<DefaultView
+						item={item}
+						key={item._id}
+						itemUrl={this.props.itemUrl}
+						mainDisplayPropSmall={this.props.mainDisplayPropSmall}
+						mainDisplayPropBig={this.props.mainDisplayPropBig}
+					/>
+				)
+		}
+	}
+
 
 	render() {
 		return (
 			<div className="list-results" id="results">
 				{this.props.mainCollection.loadedCollection.map(item => {
-					return (
-						<div className="list-result-item" key={item._id}>
-							<Link to={`${this.props.itemUrl}/${item._id}`}>
-
-								<div className="list-result-item-top">
-									<div className="list-result-item-top-left">
-										{this.renderMainProps(item)}
-									</div>
-
-									<div className="list-result-item-top-right">
-											<div className="created-date">
-												Created {moment(item.createdAt).fromNow()}
-											</div>
-											<Button
-												rightIcon="arrow-right"
-												minimal="true"
-												large="true"
-												text="View item"
-											/>
-									</div>
-
-								</div>
-
-
-							</Link>
-
-						</div>
-					)
+					return this.renderResultItem(item)
 				})}
 
 				{this.renderLoadMoreButton()}

@@ -32,11 +32,11 @@ class Header extends Component {
 
                     <div className="route-header-right">
                         <ul className="route-actions">
+                           
                             <li>
                                 <Button 
                                     minimal="true"
                                     icon="notifications"
-                                    text="2"
                                     onClick={() =>  {
                                         this.props.onShelfOpen()
                                         this.props.showShelf("notifications")}

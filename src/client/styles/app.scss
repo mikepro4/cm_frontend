@@ -9,7 +9,8 @@
     
     .route-header-container {
         background: $white;
-        box-shadow: 0 1px 2px 0 rgba(32,43,51,0.07), 0 1px 7px 0 rgba(92,112,128,0.05), 0 12px 42px 0 rgba(115,134,149,0.10);
+		box-shadow: 0 1px 2px 0 rgba(32,43,51,0.07), 0 1px 7px 0 rgba(92,112,128,0.05), 0 12px 42px 0 rgba(115,134,149,0.10);
+		z-index: 10;
     }
 
 	.route-header {

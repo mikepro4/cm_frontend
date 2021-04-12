@@ -15,6 +15,8 @@ import { resetForm } from "../../../../redux/actions/formActions"
 
 import { hideDrawer } from "../../../../redux/actions/appActions"
 
+import Content from "./Content"
+
 class TickersLibrary extends Component {
 	state = {
 		selectedTabId: "1",
@@ -87,9 +89,7 @@ class TickersLibrary extends Component {
 	renderTab = () => {
 		switch (this.state.selectedTabId) {
 			case "1":
-				return(
-					<div className="placeholder">1</div>
-				)
+				return(<Content/>)
 			case "2":
 				return(
 					<div className="placeholder">2</div>
@@ -113,10 +113,6 @@ class TickersLibrary extends Component {
 				return(
 					<OptionsBar
 						propertyName="symbol"
-						filterOpen={this.state.filterOpen}
-						sortOpen={this.state.sortOpen}
-						viewOpen={this.state.viewOpen}
-						query={this.state.query}
 						filterOn={true}
 						sortOn={true}
 						viewOn={true}
