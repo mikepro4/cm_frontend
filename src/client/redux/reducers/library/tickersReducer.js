@@ -115,7 +115,6 @@ import {
             }
         case LOAD_MORE_TICKERS:
             let loadMoreColSet = _.merge({}, state.collectionSettings, {
-                limit: state.collectionSettings.limit + 20,
                 offset: state.collectionSettings.offset + 20
             })
             return {
@@ -127,8 +126,6 @@ import {
         case LOAD_MORE_TICKERS_SUCCESS:
             let newCollection = _.concat(state.loadedCollection, action.payload.all)
             let newColSet = _.merge({}, state.collectionSettings, {
-                limit: state.collectionSettings.limit + 20,
-                offset: state.collectionSettings.offset + 20
             })    
             return {
                 ...state,

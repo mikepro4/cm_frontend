@@ -77,7 +77,7 @@ class ListResults extends Component {
 	renderLoadMoreButton = () => {
 		if (
 			this.props.mainCollection.loadedCollectionCount >
-			this.props.mainCollection.collectionSettings.limit 
+			this.props.mainCollection.collectionSettings.offset 
 		) {
 			return (
 				<a className="anchor-button" id="loadmore" onClick={() => this.loadMoreResults()}>

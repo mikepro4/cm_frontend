@@ -124,7 +124,7 @@ export const loadMoreTickers = (
 		criteria,
 		sortProperty: object.collectionSettings.sortProperty.value,
 		offset: offset,
-		limit: limit,
+		limit: 20,
 		order: object.collectionSettings.order.value 
 	}
 	)
@@ -133,7 +133,7 @@ export const loadMoreTickers = (
 	const response = await api.post("/tickers/search", {
 			criteria,
 			offset,
-			limit,
+			limit: 20,
 			sortProperty: object.collectionSettings.sortProperty.value,
 			order: object.collectionSettings.order.value 
 		}
