@@ -68,11 +68,13 @@ class TickerCard extends Component {
 
 
         let finalNewWeek = [
-          [
-            moment().format(),
-            newWeek[0].value,
-            newWeek[0].itemStyle
-          ],
+          {
+            value: [ 
+              moment().format(),
+              newWeek[0].value
+            ],
+            itemStyle: newWeek[0].itemStyle
+          },
           [
             moment().subtract(1, "days").format(),
             newWeek[1].value
