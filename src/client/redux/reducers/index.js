@@ -9,6 +9,7 @@ import { videosReducer } from "./library/videosReducer";
 import { proxiesReducer } from "./library/proxiesReducer";
 import { modalsReducer } from "./modalsReducer";
 import { scrapingSearchResults } from "./scraping/searchResultsReducer";
+import { pricesReducer } from "./pricesReducer";
 
 export default (history) => combineReducers({
 	router: connectRouter(history),
@@ -19,5 +20,6 @@ export default (history) => combineReducers({
 	tickersLibrary: tickersReducer,
 	videosLibrary: videosReducer,
 	proxiesLibrary: proxiesReducer,
-	scrapingSearchResults: scrapingSearchResults
+	scrapingSearchResults: scrapingSearchResults,
+	prices: pricesReducer
 })

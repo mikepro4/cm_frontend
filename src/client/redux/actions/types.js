@@ -161,4 +161,13 @@ export const UPDATE_PREVIOUS_CYCLE_SEARCH_RESULTS = "app/UPDATE_PREVIOUS_CYCLE_S
 export const UPDATE_TICKERS_SEARCH_RESULTS = "app/UPDATE_TICKERS_SEARCH_RESULTS";
 export const UPDATE_VIDEOS_SEARCH_RESULTS = "app/UPDATE_VIDEOS_SEARCH_RESULTS";
 
+// =============================================================================
+
+// Prices
+
+export const ADD_PRICE_WEEK = "app/ADD_PRICE_WEEK";
+export const ADD_PRICE_WEEK_SUCCESS = "app/ADD_PRICE_WEEK_SUCCESS";
+export const CLEAR_PRICES = "app/CLEAR_PRICES";
+
+
 
