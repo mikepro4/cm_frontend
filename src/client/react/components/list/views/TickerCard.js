@@ -46,7 +46,7 @@ class TickerCard extends Component {
           }
 					return {
             value: metric,
-            itemStyle: { normal: { color: color } },
+            itemStyle: { color: color },
           }
         })
         

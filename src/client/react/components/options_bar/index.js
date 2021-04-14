@@ -63,7 +63,10 @@ class OptionsBar extends Component {
                                 minimal="true"
                                 icon="cross"
                                 small="true"
-                                onClick={() => this.props.resetForm("queryForm")}
+                                onClick={() =>  {
+                                    this.props.resetForm("queryForm")
+                                    this.props.onSearchClear()
+                                }}
                             />
                         </div>}
 

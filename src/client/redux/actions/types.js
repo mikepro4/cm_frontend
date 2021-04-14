@@ -66,6 +66,9 @@ export const LOAD_MORE_TICKERS_SUCCESS = "app/LOAD_MORE_TICKERS_SUCCESS";
 export const UPDATE_TOTAL_TICKERS_PIXELS = "app/UPDATE_TOTAL_TICKERS_PIXELS";
 export const UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS = "app/UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS";
 
+export const UPDATE_TICKER_SEARCH_QUERY = "app/UPDATE_TICKER_SEARCH_QUERY";
+export const CLEAR_TICKER_SEARCH_QUERY = "app/CLEAR_TICKER_SEARCH_QUERY";
+
 // =============================================================================
 
 // Videos
@@ -169,5 +172,5 @@ export const ADD_PRICE_WEEK = "app/ADD_PRICE_WEEK";
 export const ADD_PRICE_WEEK_SUCCESS = "app/ADD_PRICE_WEEK_SUCCESS";
 export const CLEAR_PRICES = "app/CLEAR_PRICES";
 
-
+// =============================================================================
 

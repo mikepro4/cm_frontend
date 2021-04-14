@@ -17,6 +17,12 @@ import { hideDrawer } from "../../../../redux/actions/appActions"
 
 import Content from "./Content"
 
+import {
+	searchTickers,
+	updateTickerSearchQuery,
+	clearTickerSearchQuery
+} from '../../../../redux/actions/library/tickersActions'
+
 class TickersLibrary extends Component {
 	state = {
 		selectedTabId: "1",
@@ -106,6 +112,14 @@ class TickersLibrary extends Component {
 				return ;
 		}
 	}
+	
+	loadCollection = () => {
+		this.props.searchTickers()
+	}
+
+	clearSearchQuery = () => {
+		this.props.searchTickers()
+	}
 
 	renderOptionsBar = () => {
 		switch (this.state.selectedTabId) {
@@ -154,8 +168,15 @@ class TickersLibrary extends Component {
 								}
 							}
 						}
-						onChange={(value) => console.log(value)}
-						onSubmit={(value) => console.log(value)}
+						onChange={(value) => {
+							this.props.updateTickerSearchQuery(value)
+							this.loadCollection()
+						}}
+						onSubmit={(value) => this.loadCollection()}
+						onSearchClear={(value) => {
+							this.props.clearTickerSearchQuery()
+							this.loadCollection()
+						}}
 					/>
 				)
 			default:
@@ -233,6 +254,9 @@ export default {
 	component: connect(mapStateToProps, {
 		updateQueryString,
 		resetForm,
-		hideDrawer
+		hideDrawer,
+		searchTickers,
+		updateTickerSearchQuery,
+		clearTickerSearchQuery
 	})(TickersLibrary)
 }

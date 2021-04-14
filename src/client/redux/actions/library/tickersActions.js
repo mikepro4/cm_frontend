@@ -17,7 +17,9 @@ import {
 	LOAD_MORE_TICKERS,
 	LOAD_MORE_TICKERS_SUCCESS,
 	UPDATE_TOTAL_TICKERS_PIXELS,
-	UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS
+	UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS,
+	UPDATE_TICKER_SEARCH_QUERY,
+    CLEAR_TICKER_SEARCH_QUERY
 } from "../../actions/types";
 
 import { reset } from "redux-form";
@@ -60,13 +62,16 @@ export const searchTickers = (
 		type: SEARCH_TICKERS
 	});
 
-	let criteria = getState().tickersLibrary.collectionFilters
+	let searchQuery = getState().tickersLibrary.collectionSearchQuery
+	let filter = getState().tickersLibrary.collectionFilters
+
+	let criteria = _.merge({}, filter, searchQuery)
 
 	const response = await api.post("/tickers/search", {
 			criteria,
 			sortProperty: object.collectionSettings.sortProperty.value,
 			offset: 0,
-			limit: 20,
+			limit: object.collectionSettings.limit,
 			order: object.collectionSettings.order.value 
 		}
 	)
@@ -81,30 +86,7 @@ export const searchTickers = (
 	}
 };
 
-export const searchTickersManual = (
-	criteria,
-	sortProperty,
-	offset = 0,
-	limit = 10,
-	success
-) => async (dispatch, getState, api) => {
-
-	let order = -1 
-
-	const response = await api.post("/tickers/search", {
-			criteria,
-			sortProperty,
-			offset,
-			limit,
-			order
-		}
-	);
-
-	if (success) {
-		success(response.data);
-	}
-};
-// =============================================================================
+//ß===========================================================================
 
 export const loadMoreTickers = (
 	limit,
@@ -118,32 +100,19 @@ export const loadMoreTickers = (
 		type: LOAD_MORE_TICKERS
 	});
 
-	let criteria = getState().tickersLibrary.collectionFilters
+	let searchQuery = getState().tickersLibrary.collectionSearchQuery
+	let filter = getState().tickersLibrary.collectionFilters
 
-	console.log({
-		criteria,
-		sortProperty: object.collectionSettings.sortProperty.value,
-		offset: offset,
-		limit: 20,
-		order: object.collectionSettings.order.value 
-	}
-	)
-
+	let criteria = _.merge({}, filter, searchQuery)
 
 	const response = await api.post("/tickers/search", {
 			criteria,
 			offset,
-			limit: 20,
+			limit: object.collectionSettings.limit,
 			sortProperty: object.collectionSettings.sortProperty.value,
 			order: object.collectionSettings.order.value 
 		}
 	);
-
-
-	// dispatch({
-	// 	type: LOAD_MORE_TICKERS_SUCCESS,
-	// 	payload: response.data
-	// });
 
 	if (response.status === 200) {
 		console.log(response.data.all);
@@ -291,7 +260,7 @@ export const validateSymbol = (values, dispatch, props, field)  => {
 		return Promise.resolve();
 	} else {
 		return axios
-		.post("/api//tickers/validate_symbol", {
+		.post("/api/tickers/validate_symbol", {
 			symbol: values.symbol
 		})
 		.then(response => {
@@ -327,3 +296,18 @@ export const updateTotalScrolledTickersPixels = (px) => async (dispatch, getStat
 }
 
 /////////////////////////////////////////////////
+
+export const updateTickerSearchQuery = (value) => async (dispatch, getState) => {
+	dispatch({
+		type: UPDATE_TICKER_SEARCH_QUERY,
+		payload: value,
+	});
+}
+
+/////////////////////////////////////////////////
+
+export const clearTickerSearchQuery = () => async (dispatch, getState) => {
+	dispatch({
+		type: CLEAR_TICKER_SEARCH_QUERY
+	});
+}

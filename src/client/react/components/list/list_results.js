@@ -49,7 +49,7 @@ class ListResults extends Component {
 
 	componentDidUpdate(prevprops) {
 
-		if(prevprops.mainCollection.updateCollection !== this.props.mainCollection.updateCollection && this.props.mainCollection.updateCollection) {
+		if(prevprops.mainCollection.updateCollection !== this.props.mainCollection.updateCollection) {
 			this.loadCollection()
 		}
 
@@ -81,7 +81,7 @@ class ListResults extends Component {
 		) {
 			return (
 				<a className="anchor-button" id="loadmore" onClick={() => this.loadMoreResults()}>
-					Load More
+					
 				</a>
 			);
 		}

@@ -1,25 +1,31 @@
 import {
     SEARCH_TICKERS,
     SEARCH_TICKERS_SUCCESS,
+    CREATE_TICKER,
+    CREATE_TICKER_SUCCESS,
+    DELETE_TICKER,
     LOAD_TICKER_SUCCESS,
+    CLEAR_CURRENT_TICKER,
+    UPDATE_TICKER,
+    UPDATE_TICKER_SUCCESS,
+    UPDATE_TICKER_FILTERS,
+    RESET_TICKER_FILTERS,
+    UPDATE_TICKER_COLLECTION_SETTINGS,
     LOAD_MORE_TICKERS,
     LOAD_MORE_TICKERS_SUCCESS,
     UPDATE_TOTAL_TICKERS_PIXELS,
-    UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS,
-    UPDATE_TICKER_SEARCH_QUERY,
-    CLEAR_TICKER_SEARCH_QUERY
+    UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS
   } from "../../actions/types";
 
   import * as _ from "lodash";
   
   export const initialState = {
     loading: false,
-    current: null,
+    current: {},
     loadedCollection: [],
     loadedCollectionCount: null,
     updateCollection: false,
     collectionFilters: {},
-    collectionSearchQuery: null,
     collectionSettings: {
         order: {
             label: "DESC",
@@ -42,8 +48,8 @@ import {
       switch (action.type) {
         case SEARCH_TICKERS:
             let newColSetSearch = _.merge({}, state.collectionSettings, {
-                offset: 0,
-                limit: 20
+                limit: 20,
+                offset: 0
             })
             return {
                 ...state,
@@ -59,10 +65,53 @@ import {
                 loadedCollection: action.payload.all,
                 loadedCollectionCount: action.payload.count,
             }
+        case CREATE_TICKER:
+            return {
+                ...state,
+                loading: true,
+            }
+        case CREATE_TICKER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                updateCollection: true
+            }
+        case DELETE_TICKER:
+            return {
+                ...state,
+                updateCollection: true
+            }
         case LOAD_TICKER_SUCCESS:
             return {
                 ...state,
                 current: action.payload
+            }
+        case CLEAR_CURRENT_TICKER:
+            return {
+                ...state,
+                current: {}
+            };
+        case UPDATE_TICKER:
+            return {
+                ...state,
+                loading: true,
+            }
+        case UPDATE_TICKER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                current: action.payload,
+                updateCollection: true
+            }
+        case UPDATE_TICKER_FILTERS:
+            return {
+                ...state,
+                collectionFilters: action.payload
+            }
+        case RESET_TICKER_FILTERS:
+            return {
+                ...state,
+                collectionFilters: {}
             }
         case LOAD_MORE_TICKERS:
             let loadMoreColSet = _.merge({}, state.collectionSettings, {
@@ -85,6 +134,14 @@ import {
                 loadedCollectionCount: action.payload.count,
                 collectionSettings: newColSet
             }
+        case UPDATE_TICKER_COLLECTION_SETTINGS:
+            let newColelctionSettings = _.merge({}, state.collectionSettings, {
+                [action.prop]: action.payload
+            })
+            return {
+                ...state,
+                collectionSettings: newColelctionSettings
+            }
         case UPDATE_TOTAL_TICKERS_PIXELS:
             return _.assign({}, state, {
                 totalPixels: action.total,
@@ -94,14 +151,6 @@ import {
         case UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS:
             return _.assign({}, state, {
                 totalScrolledPixels: action.pixels
-            }); 
-        case UPDATE_TICKER_SEARCH_QUERY:
-            return _.assign({}, state, {
-                collectionSearchQuery: action.payload
-            })
-        case CLEAR_TICKER_SEARCH_QUERY:
-            return _.assign({}, state, {
-                collectionSearchQuery: null
             }); 
         default:
             return state;
