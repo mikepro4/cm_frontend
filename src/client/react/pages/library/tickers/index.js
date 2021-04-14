@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { Icon, Button, Position, Toaster, Classes, Intent, Spinner } from "@blueprintjs/core";
 
 import qs from "qs";
+import * as _ from "lodash"
 import { updateQueryString } from "../../../../redux/actions/appActions";
 
 import Header from "./../../../components/header"
@@ -12,6 +13,7 @@ import OptionsBar from "./../../../components/options_bar"
 import Drawer from "./../../../components/drawer"
 
 import Filter from "./Filter"
+import Sort from "./Sort"
 
 import { resetForm } from "../../../../redux/actions/formActions"
 
@@ -131,7 +133,7 @@ class TickersLibrary extends Component {
 						propertyName="symbol"
 						filterOn={true}
 						sortOn={true}
-						viewOn={true}
+						viewOn={false}
 						onFilterClick={() =>  {
 								if(this.state.filterOpen) {
 									this.resetOptionsBar()
@@ -200,15 +202,79 @@ class TickersLibrary extends Component {
 		}
 
 		if(this.state.sortOpen) {
-			return(<div className="sort-drawer" id="drawer">Sort</div>)
+			return(
+				<div className="sort-drawer" id="drawer">
+					<Sort
+						sortProperties={[
+							{
+								value: "last24hours",
+								label: "Last 24 hours"
+							},
+							{
+								value: "last48hours",
+								label: "Last 48 hours"
+							},
+							{
+								value: "createdAt",
+								label: "Date Created"
+							},
+							{
+								value: "previousWeek",
+								label: "Previous Week"
+							},
+							{
+								value: "thisWeek",
+								label: "This Week"
+							},
+							{
+								value: "thisWeek",
+								label: "This Week"
+							},
+							{
+								value: "previousWeek",
+								label: "Previous Week"
+							},
+							{
+								value: "growthRate24",
+								label: "Growth Rate 24 hours"
+							},
+							{
+								value: "growthRate48",
+								label: "Growth Rate 48 hours"
+							},
+							{
+								value: "growthRate72",
+								label: "Growth Rate 72 hours"
+							},
+							{
+								value: "score",
+								label: "Score"
+							},
+							{
+								value: "symbol",
+								label: "Symbol"
+							}
+						]}
+					/>
+				</div>
+			)
 		}
 		if(this.state.viewOpen) {
 			return(<div className="view-drawer" id="drawer">View</div>)
 		}
 	}
 
+	maybeSearchOnDrawerClose = () => {
+		console.log(this.props.form.ticker_filters)
+		if(this.props.tickers && this.props.form && this.props.form.ticker_filters) {
+			if(!_.isEqual(this.props.form.ticker_filters.values, this.props.tickers.collectionFilters)) {
+				this.loadCollection()
+			} else {
+			}
+		}
+	}
+
 	render() {
-		
 		if(this.props.authenticated) {
 
 			return (
@@ -237,7 +303,9 @@ class TickersLibrary extends Component {
 						{this.renderTab()}
 
 						<Drawer
-							onCLose={() => this.resetOptionsBar()}
+							onCLose={() => {
+								this.resetOptionsBar()
+							}}
 						>
 							{this.renderSelectedOtionContent()}
 						</Drawer>
@@ -255,7 +323,9 @@ class TickersLibrary extends Component {
 
 function mapStateToProps(state) {
 	return {
-		authenticated: state.auth.authenticated
+		authenticated: state.auth.authenticated,
+		tickers: state.tickersLibrary,
+		form: state.form
 	};
 }
 

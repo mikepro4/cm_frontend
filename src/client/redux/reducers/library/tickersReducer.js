@@ -9,7 +9,8 @@ import {
     UPDATE_TICKER_SEARCH_QUERY,
     CLEAR_TICKER_SEARCH_QUERY,
     UPDATE_TICKER_FILTERS,
-    RESET_TICKER_FILTERS
+    RESET_TICKER_FILTERS,
+    UPDATE_TICKER_COLLECTION_SETTINGS
   } from "../../actions/types";
 
   import * as _ from "lodash";
@@ -114,6 +115,14 @@ import {
             return {
                 ...state,
                 collectionFilters: {}
+            }
+        case UPDATE_TICKER_COLLECTION_SETTINGS:
+            let newColelctionSettings = _.merge({}, state.collectionSettings, {
+                [action.prop]: action.payload
+            })
+            return {
+                ...state,
+                collectionSettings: newColelctionSettings
             }
         default:
             return state;

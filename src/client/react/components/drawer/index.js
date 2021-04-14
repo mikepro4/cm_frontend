@@ -19,9 +19,7 @@ class Drawer extends Component {
         })
         this.props.hideDrawer()
 
-
         setTimeout(() => { 
-
             this.setState({
                 transitionOut: false
             })

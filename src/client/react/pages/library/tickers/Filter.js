@@ -16,9 +16,8 @@ import {
 	submitForm,
 } from '../../../../redux/actions/formActions'
 
-class Sidebar extends Component {
+class Filter extends Component {
 	handleSubmit = values => {
-        this.props.searchTickers()
         this.props.onCloseDrawer()
 	}
 
@@ -61,7 +60,10 @@ class Sidebar extends Component {
 						onSubmit={this.handleSubmit.bind(this)}
 						enableReinitialize="true"
 						initialValues={this.props.tickers ? this.props.tickers.collectionFilters : ""}
-						onChange={(values) => this.props.updateTickerFilters(values)}
+						onChange={(values) => { 
+                            this.props.updateTickerFilters(values)
+                            this.props.searchTickers()
+                        }}
 					/>
 				</div>
             </div>
@@ -81,4 +83,4 @@ export default connect(mapStateToProps, {
 	updateTickerFilters,
 	resetTickerFilters,
 	submitForm
-})(withRouter(Sidebar));
+})(withRouter(Filter));
