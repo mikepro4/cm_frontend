@@ -11,6 +11,8 @@ import TabBar from "./../../../components/tab_bar"
 import OptionsBar from "./../../../components/options_bar"
 import Drawer from "./../../../components/drawer"
 
+import Filter from "./Filter"
+
 import { resetForm } from "../../../../redux/actions/formActions"
 
 import { hideDrawer } from "../../../../redux/actions/appActions"
@@ -187,7 +189,14 @@ class TickersLibrary extends Component {
 	renderSelectedOtionContent = () => {
 
 		if(this.state.filterOpen) {
-			return(<div className="filter-drawer" id="drawer">Filters</div>)
+			return(
+				<div className="filter-drawer" id="drawer">
+					<Filter
+						onCloseDrawer={() => {
+							this.resetOptionsBar()
+						}}
+					/>
+				</div>)
 		}
 
 		if(this.state.sortOpen) {

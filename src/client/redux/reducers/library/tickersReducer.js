@@ -7,7 +7,9 @@ import {
     UPDATE_TOTAL_TICKERS_PIXELS,
     UPDATE_TOTAL_SCROLLED_TICKERS_PIXELS,
     UPDATE_TICKER_SEARCH_QUERY,
-    CLEAR_TICKER_SEARCH_QUERY
+    CLEAR_TICKER_SEARCH_QUERY,
+    UPDATE_TICKER_FILTERS,
+    RESET_TICKER_FILTERS
   } from "../../actions/types";
 
   import * as _ from "lodash";
@@ -103,6 +105,16 @@ import {
             return _.assign({}, state, {
                 collectionSearchQuery: null
             }); 
+        case UPDATE_TICKER_FILTERS:
+            return {
+                ...state,
+                collectionFilters: action.payload
+            }
+        case RESET_TICKER_FILTERS:
+            return {
+                ...state,
+                collectionFilters: {}
+            }
         default:
             return state;
         }

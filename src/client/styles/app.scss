@@ -76,7 +76,8 @@
 		flex-shrink: 1;
 		position: relative;
 		display: flex;
-        overflow-y: scroll;
+		overflow-y: scroll;
+		z-index: 1;
         
         .route-content {
 			flex-grow: 1;
