@@ -43,7 +43,7 @@ class TickersLibrary extends Component {
 			sortOpen: false,
 			viewOpen: false
 		})
-		this.props.resetForm("queryForm")
+		// this.props.resetForm("queryForm")
 		this.props.hideDrawer()
 	}
 

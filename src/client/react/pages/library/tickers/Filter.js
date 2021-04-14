@@ -50,6 +50,7 @@ class Sidebar extends Component {
 							onClick={()=> {
                                 this.props.submitForm("ticker_filters")
                                 this.props.onCloseDrawer()
+                                this.props.searchTickers()
                             }}
 						/>
 					</div>
